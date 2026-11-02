@@ -1,9 +1,12 @@
+# Material del curso
 /bishop pattern recognition/
-Agentes_actAsistencia.pdf
-ana y samuel asistencia.pdf
-Asistencia 14092026.pdf
-c1-2 - Copy.pdf
-ML.pdf
-Respuesta_Game_Trees_Minimax_Alpha_Beta.pdf
+*.pdf
+
+# Datos (comentarios reales de estudiantes: no subir)
 /proyecto/data/
+
+# Generados / locales
 __pycache__/
+venv/
+.ipynb_checkpoints/
+.env
