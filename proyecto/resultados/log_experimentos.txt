@@ -1,0 +1,148 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+train=493 test=124 grupos=616
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 3157.43it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  18%|█▊        | 36/199 [00:00<00:00, 344.69it/s]Loading weights:  37%|███▋      | 73/199 [00:00<00:00, 356.05it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 676.30it/s]
+embeddings listos en 92.0 s
+base tfidf_pal   lr   F1=0.568
+base tfidf_pal   svm  F1=0.594
+base tfidf_pal   nb   F1=0.417
+base tfidf_pal   rf   F1=0.514
+base tfidf_car   lr   F1=0.598
+base tfidf_car   svm  F1=0.606
+base tfidf_car   nb   F1=0.360
+base tfidf_car   rf   F1=0.585
+base emb_minilm  lr   F1=0.703
+base emb_minilm  svm  F1=0.711
+base emb_minilm  nb   F1=0.673
+base emb_minilm  rf   F1=0.691
+base emb_mpnet   lr   F1=0.712
+base emb_mpnet   svm  F1=0.699
+base emb_mpnet   nb   F1=0.702
+base emb_mpnet   rf   F1=0.721
+grid tfidf_pal   lr   F1=0.621 {'clf__C': 100, 'clf__class_weight': None, 'rep__min_df': 1, 'rep__ngram_range': (1, 2), 'rep__preprocessor': 'normalizar_basico'}
+grid tfidf_pal   svm  F1=0.624 {'clf__C': 10, 'clf__class_weight': 'balanced', 'rep__min_df': 1, 'rep__ngram_range': (1, 2), 'rep__preprocessor': 'normalizar_basico'}
+grid tfidf_pal   nb   F1=0.605 {'clf__alpha': 0.1, 'rep__min_df': 2, 'rep__ngram_range': (1, 2), 'rep__preprocessor': 'normalizar_basico'}
+grid tfidf_pal   rf   F1=0.627 {'clf__class_weight': 'balanced_subsample', 'clf__max_depth': 20, 'clf__min_samples_leaf': 3, 'rep__min_df': 2, 'rep__ngram_range': (1, 2), 'rep__preprocessor': 'normalizar_basico'}
+grid tfidf_car   lr   F1=0.618 {'clf__C': 100, 'clf__class_weight': None, 'rep__min_df': 1, 'rep__ngram_range': (3, 5)}
+grid tfidf_car   svm  F1=0.621 {'clf__C': 1, 'clf__class_weight': 'balanced', 'rep__min_df': 1, 'rep__ngram_range': (3, 5)}
+grid tfidf_car   nb   F1=0.600 {'clf__alpha': 0.1, 'rep__min_df': 2, 'rep__ngram_range': (2, 4)}
+grid tfidf_car   rf   F1=0.629 {'clf__class_weight': 'balanced_subsample', 'clf__max_depth': None, 'clf__min_samples_leaf': 3, 'rep__min_df': 1, 'rep__ngram_range': (3, 5)}
+grid emb_minilm  lr   F1=0.704 {'clf__C': 10, 'clf__class_weight': 'balanced'}
+grid emb_minilm  svm  F1=0.714 {'clf__C': 1, 'clf__class_weight': 'balanced'}
+grid emb_minilm  nb   F1=0.674 {'clf__var_smoothing': 0.1}
+grid emb_minilm  rf   F1=0.703 {'clf__class_weight': 'balanced_subsample', 'clf__max_depth': None, 'clf__min_samples_leaf': 3}
+grid emb_mpnet   lr   F1=0.712 {'clf__C': 1, 'clf__class_weight': None}
+grid emb_mpnet   svm  F1=0.714 {'clf__C': 0.1, 'clf__class_weight': None}
+grid emb_mpnet   nb   F1=0.706 {'clf__var_smoothing': 0.1}
+grid emb_mpnet   rf   F1=0.721 {'clf__class_weight': None, 'clf__max_depth': None, 'clf__min_samples_leaf': 1}
+{
+  "n_total": 617,
+  "distribucion": {
+    "negativo": 205,
+    "neutral": 259,
+    "positivo": 153
+  },
+  "sha256_dataset": "74a62a5dfaa6a690",
+  "n_grupos": 616,
+  "pares_casi_duplicados": 1,
+  "n_train": 493,
+  "n_test": 124,
+  "dist_train": {
+    "negativo": 164,
+    "neutral": 207,
+    "positivo": 122
+  },
+  "dist_test": {
+    "negativo": 41,
+    "neutral": 52,
+    "positivo": 31
+  },
+  "seg_embeddings": 92.0,
+  "efecto_marcado": {
+    "normalizar_basico": 0.6213,
+    "normalizar_marcado": 0.6145
+  },
+  "final": {
+    "rep": "emb_mpnet",
+    "clf": "rf",
+    "params": {
+      "clf__class_weight": null,
+      "clf__max_depth": null,
+      "clf__min_samples_leaf": 1
+    },
+    "cv_f1_macro": 0.721,
+    "test_accuracy": 0.6935,
+    "test_f1_macro": 0.681,
+    "test_f1_ic95": [
+      0.5831,
+      0.7593
+    ],
+    "matriz_confusion": [
+      [
+        28,
+        9,
+        4
+      ],
+      [
+        8,
+        42,
+        2
+      ],
+      [
+        0,
+        15,
+        16
+      ]
+    ]
+  },
+  "errores_por_contraste": {
+    "con_contraste": {
+      "n": 108,
+      "accuracy": 0.6759
+    },
+    "sin_contraste": {
+      "n": 16,
+      "accuracy": 0.8125
+    }
+  }
+}
+           rep  clf  f1_macro    f1_std  n_combinaciones   seg                                                                                                                                                                         mejores_params
+15   emb_mpnet   rf  0.720985  0.037081                8  18.4                                                                                                        {"clf__class_weight": null, "clf__max_depth": null, "clf__min_samples_leaf": 1}
+13   emb_mpnet  svm  0.714063  0.027494                8   3.2                                                                                                                                             {"clf__C": 0.1, "clf__class_weight": null}
+9   emb_minilm  svm  0.713593  0.039194                8   0.9                                                                                                                                         {"clf__C": 1, "clf__class_weight": "balanced"}
+12   emb_mpnet   lr  0.711733  0.026423                8   1.1                                                                                                                                               {"clf__C": 1, "clf__class_weight": null}
+14   emb_mpnet   nb  0.705703  0.034560                4   0.1                                                                                                                                                            {"clf__var_smoothing": 0.1}
+8   emb_minilm   lr  0.704226  0.051205                8   1.0                                                                                                                                        {"clf__C": 10, "clf__class_weight": "balanced"}
+11  emb_minilm   rf  0.703028  0.065375                8  18.2                                                                                        {"clf__class_weight": "balanced_subsample", "clf__max_depth": null, "clf__min_samples_leaf": 3}
+10  emb_minilm   nb  0.674418  0.058308                4   0.1                                                                                                                                                            {"clf__var_smoothing": 0.1}
+7    tfidf_car   rf  0.628634  0.037490               32  15.5                                          {"clf__class_weight": "balanced_subsample", "clf__max_depth": null, "clf__min_samples_leaf": 3, "rep__min_df": 1, "rep__ngram_range": [3, 5]}
+3    tfidf_pal   rf  0.627350  0.029695               64  20.3  {"clf__class_weight": "balanced_subsample", "clf__max_depth": 20, "clf__min_samples_leaf": 3, "rep__min_df": 2, "rep__ngram_range": [1, 2], "rep__preprocessor": "normalizar_basico"}
+1    tfidf_pal  svm  0.623632  0.017603               64   1.1                                                {"clf__C": 10, "clf__class_weight": "balanced", "rep__min_df": 1, "rep__ngram_range": [1, 2], "rep__preprocessor": "normalizar_basico"}
+0    tfidf_pal   lr  0.621307  0.024370               64  15.4                                                     {"clf__C": 100, "clf__class_weight": null, "rep__min_df": 1, "rep__ngram_range": [1, 2], "rep__preprocessor": "normalizar_basico"}
+5    tfidf_car  svm  0.620944  0.045609               32   2.2                                                                                           {"clf__C": 1, "clf__class_weight": "balanced", "rep__min_df": 1, "rep__ngram_range": [3, 5]}
+4    tfidf_car   lr  0.617532  0.063611               32   3.0                                                                                               {"clf__C": 100, "clf__class_weight": null, "rep__min_df": 1, "rep__ngram_range": [3, 5]}
+2    tfidf_pal   nb  0.604637  0.022316               32   0.6                                                                            {"clf__alpha": 0.1, "rep__min_df": 2, "rep__ngram_range": [1, 2], "rep__preprocessor": "normalizar_basico"}
+6    tfidf_car   nb  0.599584  0.030050               16   1.0                                                                                                                      {"clf__alpha": 0.1, "rep__min_df": 2, "rep__ngram_range": [2, 4]}
+           rep           clf  accuracy  precision_macro  recall_macro  f1_macro
+15   emb_mpnet            rf  0.693548         0.713805      0.668916  0.680970
+8   emb_minilm            lr  0.677419         0.676152      0.689115  0.680294
+13   emb_mpnet           svm  0.693548         0.694129      0.670636  0.677494
+10  emb_minilm            nb  0.661290         0.660463      0.673672  0.665252
+9   emb_minilm           svm  0.661290         0.659823      0.673672  0.664640
+12   emb_mpnet            lr  0.677419         0.677527      0.656096  0.662751
+11  emb_minilm            rf  0.637097         0.659202      0.622324  0.634075
+14   emb_mpnet            nb  0.637097         0.631261      0.631009  0.630412
+7    tfidf_car            rf  0.637097         0.656069      0.613725  0.622554
+4    tfidf_car            lr  0.604839         0.617560      0.589804  0.597733
+1    tfidf_pal           svm  0.596774         0.606803      0.574709  0.583181
+6    tfidf_car            nb  0.612903         0.627027      0.575405  0.581559
+0    tfidf_pal            lr  0.604839         0.617853      0.572434  0.580694
+5    tfidf_car           svm  0.580645         0.587338      0.571476  0.575166
+3    tfidf_pal            rf  0.572581         0.569828      0.556381  0.560192
+2    tfidf_pal            nb  0.564516         0.580180      0.529161  0.534512
+17           -  dummy_estrat  0.346774         0.322531      0.323151  0.322756
+16           -    dummy_freq  0.419355         0.139785      0.333333  0.196970
+      clase  precision    recall        f1  soporte
+0  negativo   0.777778  0.682927  0.727273       41
+1   neutral   0.636364  0.807692  0.711864       52
+2  positivo   0.727273  0.516129  0.603774       31

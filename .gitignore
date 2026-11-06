@@ -1,15 +1,7 @@
-# Material del curso
-/bishop pattern recognition/
-*.pdf
-# Excepción: el paper final sí se versiona
-!/paper/paper.pdf
-
-# Datos (comentarios reales de estudiantes: no subir)
-/proyecto/data/
-
-# Generados / locales
+# Archivos locales de cada equipo (no son parte del proyecto)
 __pycache__/
 venv/
 .ipynb_checkpoints/
+
+# Credenciales (p. ej. claves para el MVP): nunca subir
 .env
-/proyecto/resultados/log_experimentos.txt

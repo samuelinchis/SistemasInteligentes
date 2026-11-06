@@ -1,13 +1,23 @@
-## Data availability
+## Datos
 
-The dataset consists of real student feedback comments and is NOT included in this
-repository (neither raw nor processed versions) to protect the privacy of the
-participants.
+El dataset fue entregado por el profesor del curso y está formado por comentarios de
+estudiantes creados para el ejercicio (no son evaluaciones reales). Está incluido en el
+repositorio:
 
-To run the code, place the original files in `proyecto/data/raw/`:
-- feedback_curso_universitario.csv
-- feedback_curso_universitario2.csv
-- feedback_curso_universitario3.csv
+- `data/raw/`: los tres CSV originales, sin modificar
+  (`feedback_curso_universitario.csv`, `feedback_curso_universitario2.csv`,
+  `feedback_curso_universitario3.csv`).
+- `data/processed/dataset_depurado.csv`: dataset limpio que genera `src/depurar.py`.
+- `data/processed/errores_test.csv`: comentarios de prueba mal clasificados por el modelo final.
+- `data/processed/revision_etiquetas.csv`: auditoría de etiquetas (juicio del LLM y validación humana).
 
-Note: Git does not track empty folders, so you need to create `proyecto/data/raw/`
-and `proyecto/data/processed/` manually before running the code.
+## Cómo ejecutar
+
+```
+pip install -r proyecto/requirements.txt
+python proyecto/src/depurar.py
+PYTHONPATH=proyecto/src python proyecto/src/experimentos.py
+```
+
+El modelo entrenado ya está en `modelos/modelo_polaridad.joblib`, así que no hace falta
+reentrenar para usarlo. Más contexto en `CLAUDE.md`, en la raíz del repositorio.

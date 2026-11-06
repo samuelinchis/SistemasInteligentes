@@ -31,7 +31,7 @@ Cada tabla/figura: título arriba ("Table 1. …") y fuente abajo ("Source: Auth
 - Embeddings: sentence-transformers con modelo multilingüe pequeño, ejecutado localmente.
 
 ## Datos
-- Originales en `proyecto/data/raw/feedback_curso_universitario{,2,3}.csv` (NO se suben a git; ver `.gitignore` y `proyecto/README.md`).
+- Originales en `proyecto/data/raw/feedback_curso_universitario{,2,3}.csv`. Son comentarios creados por el profesor para el ejercicio; todo el dataset está versionado en git.
 - Columnas: `id, curso, feedback, polaridad_basica, grano_fino, emocion, aspectos, semestre`.
 - Hallazgos de la exploración:
   - 618 filas útiles (617 tras depurar); 7 cursos; semestres 2023-1 a 2024-2.
@@ -51,18 +51,18 @@ Cada tabla/figura: título arriba ("Table 1. …") y fuente abajo ("Source: Auth
 ```
 docs/        enunciado (PDF) y template de la revista
 proyecto/
-  data/raw/          CSV originales (ignorado por git)
-  data/processed/    dataset depurado + errores_test.csv con textos (ignorado por git)
+  data/raw/          CSV originales (entregados por el profesor; comentarios creados para el ejercicio)
+  data/processed/    dataset depurado, errores_test.csv y revision_etiquetas.csv
   src/depurar.py           limpieza (pasos 1-2)
   src/preprocesamiento.py  normalizar_basico / normalizar_marcado (emojis, negación, intensificadores)
   src/representaciones.py  EmbeddingsFrase: transformador sklearn sobre sentence-transformers (con caché)
   src/experimentos.py      pasos 3-7: división, CV, GridSearch, test, figuras, guarda modelo
   resultados/        CSV/JSON de métricas (sin textos) + log
-  modelos/           modelo_polaridad.joblib (ignorado por git) + metadata.json
+  modelos/           modelo_polaridad.joblib + metadata.json
   requirements.txt   versiones exactas usadas para entrenar
 paper/
   paper.html         fuente del paper (editar aquí)
-  paper.pdf          entregable (los *.pdf están ignorados por git)
+  paper.pdf          entregable
   figuras/           PNG generados por experimentos.py
 ```
 
@@ -90,4 +90,4 @@ Ojo: en figuras, el archivo `fig5_terminos.png` es la Figura 4 del paper y `fig4
 ## Convenciones de redacción (preferencia del usuario)
 - Español, primera persona del singular o impersonal; sin signos de exclamación ni diminutivos.
 - Estética de referencia: `../Informe_ML.pdf` (azul marino #1a2a6c aprox., acentos naranja/ámbar, tablas con encabezado azul, figuras numeradas con pie en cursiva).
-- No commitear sin que el usuario lo pida; los datos nunca van al repo.
+- No commitear sin que el usuario lo pida. El repo incluye todo el proyecto (datos, modelo, PDFs); el .gitignore solo excluye cachés, venv y .env.

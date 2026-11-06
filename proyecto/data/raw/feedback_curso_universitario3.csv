@@ -1,0 +1,30 @@
+﻿id,curso,feedback,polaridad_basica,grano_fino,emocion,aspectos,semestre
+id,curso,feedback,polaridad_basica,grano_fino,emocion,aspectos,semestre
+1,Sistemas opertativos,Estoy contento con el curso. Me ha proporcionado una visión clara y detallada sobre cómo funcionan los sistemas operativos. Me gustó también la profundidad y flexibilidad en la documentación.,neutral,3,neutral,"[{""aspecto"": ""horario"", ""sentimiento"": ""neutral""}]",2023-1
+2,Sistemas opertativos,"El contenido ha sido bastante detallado y apasionante. Sin embargo, parece haber pasado por mucho tiempo recopilando información. Me gustaría saber más detalles sobre cómo se ha estructurado y cómo se han utilizado las leyes.",neutral,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2023-1
+3,Sistemas opertativos,La experiencia fue sencilla pero notoriamente complicada.,neutral,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2023-1
+4,Sistemas opertativos,Estudian correctamente las técnicas de programación y diseño,neutral,3,tristeza,[],2023-1
+5,Sistemas opertativos,"Estimado estudiante,
+Recuerda que la satisfacción en tu aprendizaje es importante.
+La carga académica puede ser complicada, pero es vital para alcanzar tus metas.
+Los estudios te ayudarán a entender mejor cómo funciona el mundo y a desarrollarte como profesional.
+Disfruta de cada paso y siempre busca aprender algo nuevo.
+Con un buen ambiente de estudio y práctica constante, estarás seguros de lograr tus objetivos.
+Atentamente,
+[Tu nombre]",['negativo'],3,neutral,[],2023-1
+6,Sistemas opertativos,El contenido no está adecuado para mi nivel de aprendizaje.,['negativo'],3,enfriamiento,[],2023-1
+7,Sistemas opertativos,El contenido no fue adecuadamente organizado para su aprendizaje.,negativo,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2023-1
+id,curso,feedback,polaridad_basica,grano_fino,emocion,aspectos,semestre
+1,Sistemas opertativos,Estudio de la programación avanzada con base en la implementación de sistemas operativos.,positiva,3,neutral,[],2024-2
+2,Sistemas opertativos,"Lo siento, pero como estudiante universitario, no tengo la capacidad de recibir retroalimentaciones personales.",neutral,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""neutral""}]",2024-2
+3,Sistemas opertativos,"El curso ha sido excelente. Aunque se enfrentó a algunos desafíos técnicos, el equipo ha estado abiertos a la discusión y me han proporcionado herramientas útiles.",positiva,4,neutral,[],2024-2
+4,Sistemas opertativos,Estoy extremadamente satisfactorio con este curso,positiva,4,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2024-2
+5,Sistemas opertativos,"Comentó de manera positiva sobre el contenido del curso, destacando sus habilidades técnicas.",positiva,4,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2024-2
+6,Sistemas opertativos,La actividad más interesante fue trabajar en equipo durante nuestros primeros días en clase.,positiva,5,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2024-2
+7,Sistemas opertativos,Me gustaría tener más ejercicios prácticos y interactivos para entender mejor cómo funcionan estos sistemas.,positiva,4,alegría,[],2024-2
+8,Sistemas opertativos,Espero que esta experiencia haya sido útil y gratificante.,positiva,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}, {""aspecto"": ""parciales"", ""sentimiento"": ""positivo""}, {""aspecto"": ""dificultad de las preguntas en los parciales"", ""sentimiento"": ""neutral""}, {""aspecto"": ""disponibilidad de los recursos en el aula digital"", ""sentimiento"": ""neutral""}, {""aspecto"": ""carga_académica"", ""sentimiento"": ""neutral""}, {""aspecto"": ""horario"", ""sentimiento"": ""neutral""}]",2024-2
+9,Sistemas opertativos,Este curso ha sido genial para desarrollarme como profesor y asistente de sistemas operativos.,positiva,4,neutral,[],2024-2
+10,Sistemas opertativos,La retroalimentación se basó en el contenido del curso y el análisis de ejercicios prácticos realizados durante el semestre.,positiva,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2024-2
+11,Sistemas opertativos,Estoy encantada de haber podido asistirte hoy. Me alegra saber que has encontrado mi conocimiento útil. Asegúrate de revisar los ejemplos y pruebas más detalladas para garantizar tu aprendizaje completo.,positiva,3,neutral,"[{""aspecto"": ""Ritmo y carga de trabajo"", ""sentimiento"": ""positivo""}]",2024-2
+12,Sistemas opertativos,Estoy disfrutando bastante este curso. Encontré una combinación de aprendizaje efectuoso. La estructura clara del material y la facilidad de uso de las herramientas me ha ayudado mucho. Me gustaría agregar algunos detalles personalizados como una asignatura especializada en software engineering.,positiva,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2024-2
+13,Sistemas opertativos,Me siento cómodo con el soporte técnico y plataforma.,positiva,3,neutral,"[{""aspecto"": ""contenidos"", ""sentimiento"": ""positivo""}]",2024-2
