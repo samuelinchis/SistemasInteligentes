@@ -1,0 +1,9 @@
+# Versiones usadas para entrenar el modelo (mantener iguales en el MVP)
+pandas==3.0.5
+numpy==2.3.5
+scikit-learn==1.9.1
+joblib==1.6.0
+matplotlib==3.11.2
+seaborn==0.13.2
+sentence-transformers==6.2.0
+torch==2.15.0

@@ -1,0 +1,71 @@
+{
+  "n_total": 617,
+  "distribucion": {
+    "negativo": 205,
+    "neutral": 259,
+    "positivo": 153
+  },
+  "sha256_dataset": "74a62a5dfaa6a690",
+  "n_grupos": 616,
+  "pares_casi_duplicados": 1,
+  "n_train": 493,
+  "n_test": 124,
+  "dist_train": {
+    "negativo": 164,
+    "neutral": 207,
+    "positivo": 122
+  },
+  "dist_test": {
+    "negativo": 41,
+    "neutral": 52,
+    "positivo": 31
+  },
+  "seg_embeddings": 92.0,
+  "efecto_marcado": {
+    "normalizar_basico": 0.6213,
+    "normalizar_marcado": 0.6145
+  },
+  "final": {
+    "rep": "emb_mpnet",
+    "clf": "rf",
+    "params": {
+      "clf__class_weight": null,
+      "clf__max_depth": null,
+      "clf__min_samples_leaf": 1
+    },
+    "cv_f1_macro": 0.721,
+    "test_accuracy": 0.6935,
+    "test_f1_macro": 0.681,
+    "test_f1_ic95": [
+      0.5831,
+      0.7593
+    ],
+    "matriz_confusion": [
+      [
+        28,
+        9,
+        4
+      ],
+      [
+        8,
+        42,
+        2
+      ],
+      [
+        0,
+        15,
+        16
+      ]
+    ]
+  },
+  "errores_por_contraste": {
+    "con_contraste": {
+      "n": 108,
+      "accuracy": 0.6759
+    },
+    "sin_contraste": {
+      "n": 16,
+      "accuracy": 0.8125
+    }
+  }
+}

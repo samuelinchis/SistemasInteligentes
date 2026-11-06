@@ -1,0 +1,45 @@
+{
+  "rep": "emb_mpnet",
+  "clf": "rf",
+  "params": {
+    "clf__class_weight": null,
+    "clf__max_depth": null,
+    "clf__min_samples_leaf": 1
+  },
+  "cv_f1_macro": 0.721,
+  "test_accuracy": 0.6935,
+  "test_f1_macro": 0.681,
+  "test_f1_ic95": [
+    0.5831,
+    0.7593
+  ],
+  "matriz_confusion": [
+    [
+      28,
+      9,
+      4
+    ],
+    [
+      8,
+      42,
+      2
+    ],
+    [
+      0,
+      15,
+      16
+    ]
+  ],
+  "clases": [
+    "negativo",
+    "neutral",
+    "positivo"
+  ],
+  "semilla": 42,
+  "fecha": "2026-11-05",
+  "python": "3.13.15",
+  "sklearn": "1.9.1",
+  "pandas": "3.0.5",
+  "numpy": "2.3.5",
+  "sha256_dataset": "74a62a5dfaa6a690"
+}

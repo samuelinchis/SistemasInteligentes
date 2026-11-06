@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Clasificación de polaridad en evaluaciones docentes</title>
+<style>
+  :root { --azul:#1b2a6b; --azul2:#2c3e8f; --naranja:#f2a51a; --gris:#5b6475; --fondo:#f3f5fa; --borde:#d5dae6; }
+  @page { size: A4; margin: 22mm 20mm 20mm 20mm;
+    @bottom-left { content: "Clasificación de polaridad en evaluaciones docentes"; font: 8.5pt Calibri, Carlito, sans-serif; color: #8a94a6; }
+    @bottom-right { content: "Página " counter(page); font: 8.5pt Calibri, Carlito, sans-serif; color: #8a94a6; }
+  }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: Calibri, Carlito, "Segoe UI", sans-serif; font-size: 10.8pt; line-height: 1.42; color: #1d2130; background: #fff; margin: 0; text-align: justify; hyphens: auto; }
+  .franja { height: 5px; background: var(--azul); border-bottom: 3px solid var(--naranja); margin-bottom: 14px; }
+  .revista { font-size: 8.5pt; letter-spacing: .22em; text-transform: uppercase; color: var(--naranja); font-weight: 700; text-align: center; }
+  h1.titulo { font-size: 17.5pt; line-height: 1.2; color: var(--azul); text-align: center; margin: 8px 0 6px; }
+  .titulo-es { font-size: 14pt; line-height: 1.25; color: var(--azul2); font-weight: 600; text-align: center; margin: 0 0 8px; }
+  .regla { width: 90px; height: 3px; background: var(--naranja); margin: 10px auto 12px; }
+  .autor { text-align: center; font-size: 11.2pt; color: var(--azul); font-weight: 700; line-height: 1.5; }
+  .afil { text-align: center; font-size: 9.2pt; color: var(--gris); margin: 2px 0 12px; }
+  .resumen { background: var(--fondo); border-left: 4px solid var(--naranja); padding: 9px 14px; margin: 10px 0; font-size: 9.8pt; page-break-inside: avoid; }
+  .resumen h2 { margin: 0 0 4px; font-size: 11pt; border: 0; padding: 0; }
+  .resumen p { margin: 3px 0; }
+  .kw { margin-top: 6px !important; }
+  h2 { color: var(--azul); font-size: 13.5pt; margin: 18px 0 6px; padding-bottom: 3px; border-bottom: 2px solid var(--naranja); page-break-after: avoid; }
+  h3 { color: var(--azul2); font-size: 11.3pt; margin: 12px 0 4px; page-break-after: avoid; }
+  p { margin: 5px 0; }
+  ul { margin: 4px 0 6px 0; padding-left: 20px; } li { margin: 2px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 9.3pt; margin: 2px 0; text-align: left; }
+  th { background: var(--azul); color: #fff; font-weight: 600; padding: 4px 6px; }
+  td { padding: 3px 6px; border-bottom: 1px solid var(--borde); vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f8fc; }
+  td.c, th.c { text-align: center; }
+  .mejor { font-weight: 700; color: var(--azul); }
+  .flotante { margin: 10px 0 12px; page-break-inside: avoid; }
+  .cap { font-size: 9.4pt; font-weight: 700; color: var(--azul); margin-bottom: 4px; text-align: left; }
+  .cap span { font-weight: 400; font-style: italic; color: #1d2130; }
+  .fuente { font-size: 8.4pt; color: var(--gris); margin-top: 3px; text-align: left; }
+  img { width: 100%; display: block; }
+  img.media { width: 72%; margin: 0 auto; }
+  .refs p { padding-left: 26px; text-indent: -26px; font-size: 8.9pt; margin: 1.5px 0; line-height: 1.32; text-align: left; }
+  code { font-family: Consolas, monospace; font-size: 9pt; background: var(--fondo); padding: 0 3px; }
+</style>
+</head>
+<body>
+
+<div class="franja"></div>
+<div class="revista">Intelligent Systems · Formato Ingeniería y Universidad</div>
+
+<h1 class="titulo">Automatic polarity classification of student evaluation of teaching comments: a comparison of TF-IDF and semantic embeddings</h1>
+<p class="titulo-es">Clasificación automática de la polaridad en comentarios de evaluación docente: comparación de TF-IDF y embeddings semánticos</p>
+<div class="regla"></div>
+<div class="autor">Nicolás Gómez Giraldo · Samuel Rueda Sánchez · José Harvey Barrera Ramos<br>Esteban Muñoz Serrano · Jhon David Rios Aguirre</div>
+<div class="afil">Sistemas Inteligentes · Noviembre de 2026<br>Tipología: artículo de investigación científica y tecnológica</div>
+
+<div class="resumen">
+  <h2>Abstract</h2>
+  <p><b>Objectives:</b> to evaluate machine learning classifiers that assign polarity (positive, neutral or negative) to open-ended student comments about teaching, written in Spanish. <b>Materials and methods:</b> three CSV files were cleaned into 617 comments from seven computing courses and split 80/20 with stratified group partitioning to prevent leakage. Word and character TF-IDF were compared with two multilingual sentence-embedding models, and Logistic Regression, Linear SVM, Naive Bayes and Random Forest were trained against a DummyClassifier. Hyperparameters were tuned with GridSearchCV and five-fold stratified cross-validation using macro-F1. <b>Results and discussion:</b> embeddings outperformed TF-IDF by about nine macro-F1 points in cross-validation (0.72 vs. 0.63). The selected model (MPNet + Random Forest) reached 0.681 macro-F1 and 0.694 accuracy on the test set (95% CI: 0.58–0.76), versus 0.197 for the baseline. Most errors were mixed-sentiment comments; an LLM-assisted audit, validated by the authors, found 8% of inconsistent labels. <b>Conclusions:</b> semantic embeddings are the better representation, but label quality limits performance more than the choice of classifier. The saved pipeline is ready to be integrated into an MVP.</p>
+  <p class="kw"><b>Keywords:</b> sentiment analysis, student evaluation of teaching, text classification, sentence embeddings, machine learning.</p>
+</div>
+
+<div class="resumen">
+  <h2>Resumen</h2>
+  <p><b>Objetivos:</b> evaluar clasificadores que asignen la polaridad (positiva, neutral o negativa) a comentarios abiertos de estudiantes sobre la docencia, escritos en español. <b>Materiales y métodos:</b> se depuraron tres archivos CSV en 617 comentarios de siete cursos, divididos 80/20 con una partición estratificada por grupos, sin fuga de información. Se comparó TF-IDF de palabras y caracteres con dos modelos multilingües de embeddings y se entrenaron regresión logística, SVM lineal, Naive Bayes y Random Forest frente a un DummyClassifier. Los hiperparámetros se ajustaron con GridSearchCV y validación cruzada estratificada de cinco pliegues usando macro-F1. <b>Resultados y discusión:</b> los embeddings superaron a TF-IDF en cerca de nueve puntos de macro-F1 en validación cruzada (0,72 frente a 0,63). El modelo seleccionado (MPNet + Random Forest) obtuvo 0,681 de macro-F1 y 0,694 de exactitud en prueba (IC 95&nbsp;%: 0,58–0,76), frente a 0,197 de la línea base. La mayoría de errores fueron comentarios con sentimiento mixto; una auditoría asistida por un LLM y validada por los autores encontró un 8&nbsp;% de etiquetas incoherentes. <b>Conclusiones:</b> los embeddings semánticos son la mejor representación, pero la calidad de las etiquetas limita el desempeño más que el clasificador. El modelo guardado queda listo para un MVP.</p>
+  <p class="kw"><b>Palabras clave:</b> análisis de sentimiento, evaluación docente, clasificación de texto, embeddings de oraciones, aprendizaje automático.</p>
+</div>
+
+<h2>Introducción</h2>
+<p>Al final de cada semestre los estudiantes califican a sus profesores con escalas numéricas y, en muchos casos, con un comentario libre. Las escalas son fáciles de promediar, pero su relación con el aprendizaje real es discutida: un metaanálisis de estudios multisección encontró que las calificaciones de la evaluación docente prácticamente no se relacionan con lo que aprenden los estudiantes [1]. Los comentarios abiertos, en cambio, explican <i>por qué</i> un curso funcionó o no, y por eso tienen más valor para mejorar la docencia. El problema es el volumen: leer cientos de comentarios por curso no escala, y esa información termina sin usarse.</p>
+<p>El análisis de sentimiento aplicado a la educación ha pasado por varias etapas [2], [3]. Los primeros trabajos usaron lexicones, listas de palabras con una polaridad asignada, y mostraron que un puntaje de sentimiento calculado así se correlaciona con las escalas Likert de la evaluación docente [4]. Luego llegaron los clasificadores supervisados sobre bolsas de palabras, que superaron a los lexicones en reseñas [5], y más recientemente los transformers como BERT [6] y los modelos de embeddings de oraciones como Sentence-BERT [7], que representan el significado de un texto completo en un vector. Los modelos de lenguaje de gran tamaño (LLM) también se usan ya como anotadores: en tareas de clasificación de texto, ChatGPT ha superado a anotadores de <i>crowdsourcing</i> en exactitud y en acuerdo entre codificadores [8].</p>
+<p>A pesar de estos avances, las revisiones coinciden en que la adopción práctica es baja: faltan conjuntos de datos estructurados, soluciones estandarizadas y herramientas que se integren a los procesos institucionales [2]. El objetivo de este trabajo es dar el primer paso para cerrar esa brecha: construir y evaluar de forma reproducible un clasificador de polaridad para comentarios de evaluación docente en español, comparar representaciones clásicas (TF-IDF) con representaciones semánticas (embeddings) y dejar un modelo serializado que pueda integrarse en un producto mínimo viable (MVP). Además del desempeño, se analiza con detalle la calidad del conjunto de datos, porque, como se verá, es el factor que más limita los resultados.</p>
+
+<h2>Materiales y métodos</h2>
+<p>Todo el trabajo se desarrolló en Python 3.13 con pandas, scikit-learn 1.9 [9] y sentence-transformers 6.2, con una semilla fija (<code>SEED = 42</code>). El procedimiento sigue siete pasos: (1) carga y exploración, (2) definición de la tarea y preprocesamiento, (3) división de datos, (4) representación del texto, (5) línea base, (6) ajuste de hiperparámetros y (7) evaluación final. El código está en <code>proyecto/src/</code> (<code>depurar.py</code>, <code>preprocesamiento.py</code>, <code>representaciones.py</code> y <code>experimentos.py</code>).</p>
+
+<h3>1. Carga y exploración de los datos</h3>
+<p>El conjunto de datos está formado por tres archivos CSV con comentarios de estudiantes de siete cursos de computación (Sistemas operativos, Arquitectura del computador, Programación paralela, Sistemas distribuidos, Sistemas Inteligentes, Fundamentos de programación y Bases de datos) entre los semestres 2023-1 y 2024-2. Cada fila tiene ocho columnas: <code>id</code>, <code>curso</code>, <code>feedback</code> (el comentario), <code>polaridad_basica</code>, <code>grano_fino</code>, <code>emocion</code>, <code>aspectos</code> (lista JSON de pares aspecto–sentimiento) y <code>semestre</code>. Los comentarios ya vienen anonimizados: el nombre del profesor aparece reemplazado por «Profesor». La Tabla 1 resume los problemas de calidad encontrados y el tratamiento aplicado a cada uno.</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 1. <span>Problemas de calidad detectados y tratamiento aplicado.</span></div>
+  <table>
+    <tr><th style="width:34%">Problema</th><th style="width:31%">Evidencia</th><th>Tratamiento</th></tr>
+    <tr><td>Fila de encabezado repetida dentro de los archivos</td><td>4 filas con <code>id = "id"</code></td><td>Eliminadas (622 → 618 filas)</td></tr>
+    <tr><td>Los <code>id</code> reinician en cada archivo</td><td>Tres secuencias que empiezan en 1</td><td>Nuevo identificador global <code>id_global</code></td></tr>
+    <tr><td>Etiqueta de polaridad con nueve formatos distintos</td><td><code>neutral</code>, <code>['neutral']</code>, <code>positiva</code>, <code>["['positivo']"]</code>, entre otros</td><td>Normalizada a tres clases; 1 fila con etiqueta inválida (<code>['posicion']</code>) descartada</td></tr>
+    <tr><td>Error tipográfico en el nombre del curso</td><td>«Sistemas opertativos»</td><td>Corregido</td></tr>
+    <tr><td><code>grano_fino</code> y <code>emocion</code> casi constantes</td><td>99&nbsp;% con valor 3; 99&nbsp;% «neutral»</td><td>Descartadas como variable objetivo</td></tr>
+    <tr><td>Aspectos con nombres no normalizados</td><td>22 nombres distintos, con sinónimos parciales</td><td>Fuera del alcance (trabajo futuro)</td></tr>
+    <tr><td>Duplicados</td><td>0 exactos; 1 par con similitud coseno ≥ 0,7</td><td>Agrupados para la división (paso 3)</td></tr>
+    <tr><td>Textos que no son evaluaciones</td><td>3 textos (ids 603, 607 y 616), p. ej. «Estimado estudiante, recuerda…»</td><td>Conservados y documentados (sección de Resultados)</td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<p>Tras la depuración quedaron 617 comentarios con una longitud mediana de 44 palabras (entre 6 y 120). La distribución de clases es moderadamente desbalanceada: 259 neutrales (42&nbsp;%), 205 negativos (33&nbsp;%) y 153 positivos (25&nbsp;%). La Figura 1 muestra que la proporción cambia según el semestre, y que 2024-2 apenas tiene 13 comentarios, casi todos positivos.</p>
+
+<div class="flotante">
+  <div class="cap">Figura 1. <span>Distribución de la polaridad en el conjunto completo y por semestre.</span></div>
+  <img src="figuras/fig1_distribucion.png" alt="Distribución de clases">
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<h3>2. Definición de la tarea y preprocesamiento</h3>
+<p>La tarea es una <b>clasificación multiclase de un solo nivel</b>: dado un comentario, predecir si su polaridad es positiva, neutral o negativa. Se eligió <code>polaridad_basica</code> porque es la única etiqueta con variabilidad suficiente. Como el conjunto no incluye una guía de anotación, se redactaron los criterios de la Tabla 2 con apoyo de un LLM; estos criterios se usaron después para auditar las etiquetas y clasificar los errores.</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 2. <span>Criterios de etiquetado usados para la auditoría.</span></div>
+  <table>
+    <tr><th style="width:16%">Clase</th><th>Criterio</th></tr>
+    <tr><td>Positivo</td><td>Predomina la valoración favorable del curso o del profesor; las críticas, si existen, son menores o se presentan como matices.</td></tr>
+    <tr><td>Negativo</td><td>Predomina la insatisfacción; los elogios, si existen, son secundarios frente a los problemas señalados.</td></tr>
+    <tr><td>Neutral</td><td>Elogios y críticas tienen un peso similar, o el comentario es descriptivo y sin carga emocional clara.</td></tr>
+    <tr><td>No aplica</td><td>El texto no es una evaluación de un curso (mensajes dirigidos al estudiante, respuestas de un asistente de IA).</td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia con apoyo de un LLM.</div>
+</div>
+
+<p>Para la normalización del texto se escribió una función que pasa a minúsculas, aplica la normalización Unicode NFKC, reemplaza números por <code>&lt;num&gt;</code>, convierte emojis y emoticonos en tokens con polaridad (<code>emoji_positivo</code>, <code>emoji_negativo</code>) y colapsa espacios. El conjunto actual no contiene emojis, pero el tratamiento queda listo para el MVP. Como variante, los intensificadores («muy», «bastante», «demasiado») y los negadores («no», «sin», «nunca») se unieron con la palabra siguiente, de modo que «no fue claro» genera el token <code>no_fue</code> además de las palabras sueltas. Esta variante se trató como un hiperparámetro más en el paso 6.</p>
+<p>La exploración mostró dos rasgos que anticipan la dificultad de la tarea. Primero, el 83&nbsp;% de los comentarios contiene un conector de contraste («pero», «sin embargo», «aunque», «a pesar»), es decir, la mayoría mezcla elogios y críticas. Segundo, la longitud no separa las clases (mediana de 43, 45 y 41 palabras para negativo, neutral y positivo; Figura 2), así que el modelo debe apoyarse en el contenido.</p>
+
+<div class="flotante">
+  <div class="cap">Figura 2. <span>Longitud de los comentarios (en palabras) por clase.</span></div>
+  <img class="media" src="figuras/fig2_longitud.png" alt="Longitud por clase">
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<h3>3. División de los datos</h3>
+<p>Se separó el 80&nbsp;% para entrenamiento (493 comentarios) y el 20&nbsp;% para prueba (124), estratificando por clase. La guía del proyecto pide agrupar por autor para que los comentarios de una misma persona no queden a ambos lados de la división, pero el conjunto no tiene una columna de autor. Como aproximación, se construyeron grupos uniendo comentarios con similitud coseno TF-IDF mayor o igual a 0,7 (componentes conexas del grafo de similitud) y se usó <code>StratifiedGroupKFold</code>, que estratifica por clase y mantiene cada grupo completo en un solo lado. Solo apareció un par de casi-duplicados (616 grupos), pero el mecanismo garantiza la ausencia de fuga por textos repetidos [10]. La validación cruzada de los pasos 5 y 6 se hizo con el mismo esquema (cinco pliegues) dentro del conjunto de entrenamiento; el conjunto de prueba no se usó hasta el paso 7.</p>
+
+<h3>4. Representación vectorial del texto</h3>
+<p>Se compararon cuatro representaciones, dos clásicas y dos semánticas:</p>
+<ul>
+  <li><b>TF-IDF de palabras</b> [11]: unigramas y bigramas, con ponderación sublineal de frecuencias.</li>
+  <li><b>TF-IDF de caracteres</b>: n-gramas de 3 a 5 caracteres dentro de cada palabra, más robustos a errores ortográficos y variaciones morfológicas.</li>
+  <li><b>Embeddings MiniLM</b>: el modelo <code>paraphrase-multilingual-MiniLM-L12-v2</code>, que produce vectores de 384 dimensiones. Es una versión multilingüe de Sentence-BERT obtenida por destilación de conocimiento [7], [12] sobre la arquitectura MiniLM [13].</li>
+  <li><b>Embeddings MPNet</b>: <code>paraphrase-multilingual-mpnet-base-v2</code>, de 768 dimensiones, entrenado con el mismo procedimiento [12] sobre MPNet [14].</li>
+</ul>
+<p>Los vectorizadores TF-IDF se ajustan dentro de un <code>Pipeline</code> de scikit-learn, de modo que en cada pliegue el vocabulario y los pesos IDF se aprenden solo con los datos de entrenamiento. Los modelos de embeddings son preentrenados y no se ajustan con el corpus: cada comentario se codifica de forma independiente, así que no hay fuga de información. Ambos modelos se ejecutaron localmente en CPU, sin enviar los comentarios a servicios externos; codificar los 617 comentarios con los dos modelos tomó 92 segundos.</p>
+
+<h3>5. Línea base y clasificadores</h3>
+<p>Como referencia mínima se usaron dos <code>DummyClassifier</code>: uno que siempre predice la clase mayoritaria (neutral) y otro que predice al azar respetando la proporción de clases. Sobre cada representación se entrenaron cuatro clasificadores [15]: <b>regresión logística</b> (LR), <b>SVM lineal</b> [16], <b>Naive Bayes</b> (multinomial para TF-IDF [17] y gaussiano para embeddings, que tienen valores negativos) y <b>Random Forest</b> con 300 árboles [18]. Primero se evaluaron con sus hiperparámetros por defecto, mediante validación cruzada.</p>
+
+<h3>6. Ajuste de hiperparámetros</h3>
+<p>Para cada combinación de representación y clasificador se hizo una búsqueda exhaustiva con <code>GridSearchCV</code> sobre el <code>Pipeline</code> completo, con la validación cruzada agrupada y estratificada del paso 3 y el macro-F1 como criterio de selección. Se eligió macro-F1 porque promedia el F1 de las tres clases sin ponderar por su tamaño, de modo que la clase positiva, la minoritaria, pesa igual que las demás [19]. Como las rejillas son pequeñas (entre 4 y 64 combinaciones), la búsqueda exhaustiva resultó viable y no fue necesario recurrir a <code>RandomizedSearchCV</code>. La Tabla 3 resume las rejillas.</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 3. <span>Rejillas de hiperparámetros exploradas.</span></div>
+  <table>
+    <tr><th style="width:26%">Componente</th><th>Valores explorados</th></tr>
+    <tr><td>TF-IDF palabras</td><td>n-gramas (1,1) o (1,2); <code>min_df</code> 1 o 2; preprocesamiento básico o con marcado de negación e intensificadores</td></tr>
+    <tr><td>TF-IDF caracteres</td><td>n-gramas (2,4) o (3,5); <code>min_df</code> 1 o 2</td></tr>
+    <tr><td>Regresión logística</td><td><code>C</code> ∈ {0,1; 1; 10; 100}; <code>class_weight</code> ∈ {ninguno, balanced}</td></tr>
+    <tr><td>SVM lineal</td><td><code>C</code> ∈ {0,01; 0,1; 1; 10}; <code>class_weight</code> ∈ {ninguno, balanced}</td></tr>
+    <tr><td>Naive Bayes</td><td>Multinomial: <code>alpha</code> ∈ {0,01; 0,1; 0,5; 1}. Gaussiano: <code>var_smoothing</code> ∈ {10⁻⁹; 10⁻⁶; 10⁻³; 10⁻¹}</td></tr>
+    <tr><td>Random Forest</td><td><code>max_depth</code> ∈ {ninguna, 20}; <code>min_samples_leaf</code> ∈ {1, 3}; <code>class_weight</code> ∈ {ninguno, balanced_subsample}</td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<h3>7. Evaluación final y análisis de errores</h3>
+<p>El modelo final se seleccionó por su macro-F1 en validación cruzada, no por su resultado en prueba, para que la evaluación en prueba sea una estimación honesta. Sobre el conjunto de prueba se calcularon exactitud, precisión, exhaustividad (<i>recall</i>) y macro-F1, la matriz de confusión y un intervalo de confianza del 95&nbsp;% para el macro-F1 mediante <i>bootstrap</i> (2.000 remuestreos). Por último, los comentarios mal clasificados se revisaron uno por uno y se agruparon en categorías.</p>
+
+<h3>Uso de modelos de lenguaje</h3>
+<p>Siguiendo la guía del curso, se usó un LLM (Claude) como asistente metodológico: para explorar el esquema del CSV, redactar los criterios de etiquetado, proponer rangos de hiperparámetros, categorizar los errores y hacer una auditoría de etiquetas sobre una muestra aleatoria de 50 comentarios. Como las etiquetas generadas por un LLM requieren validación humana, los autores revisaron los 28 casos en los que el LLM cuestionó la etiqueta o señaló un caso especial (etiquetas incoherentes o incorrectas, casos discutibles, errores del modelo y textos que no son evaluaciones) y confirmaron el juicio en todos ellos. Los casos que el LLM consideró coherentes o mixtos conservan su clasificación original. Los comentarios ya estaban anonimizados y los embeddings se calcularon localmente.</p>
+
+<h2>Resultados</h2>
+
+<h3>1. Línea base y efecto del ajuste</h3>
+<p>La Tabla 4 y la Figura 3 muestran el macro-F1 en validación cruzada antes y después del ajuste. Todos los modelos superan con amplitud a las dos líneas base (0,197 y 0,340). La diferencia más grande la marca la representación: con embeddings, cualquier clasificador queda entre 0,67 y 0,72, mientras que con TF-IDF el mejor llega a 0,63. El ajuste de hiperparámetros ayuda mucho a los modelos sobre TF-IDF (Naive Bayes pasa de 0,42 a 0,61 al reducir <code>alpha</code>, y Random Forest de 0,51 a 0,63 al balancear clases), pero casi nada a los modelos sobre embeddings, que ya funcionaban bien con sus valores por defecto.</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 4. <span>Macro-F1 en validación cruzada (5 pliegues): por defecto → ajustado.</span></div>
+  <table>
+    <tr><th>Clasificador</th><th class="c">TF-IDF palabras</th><th class="c">TF-IDF caracteres</th><th class="c">Emb. MiniLM</th><th class="c">Emb. MPNet</th></tr>
+    <tr><td>Regresión logística</td><td class="c">0,568 → 0,621</td><td class="c">0,598 → 0,618</td><td class="c">0,703 → 0,704</td><td class="c">0,712 → 0,712</td></tr>
+    <tr><td>SVM lineal</td><td class="c">0,594 → 0,624</td><td class="c">0,606 → 0,621</td><td class="c">0,711 → 0,714</td><td class="c">0,699 → 0,714</td></tr>
+    <tr><td>Naive Bayes</td><td class="c">0,417 → 0,605</td><td class="c">0,360 → 0,600</td><td class="c">0,673 → 0,674</td><td class="c">0,702 → 0,706</td></tr>
+    <tr><td>Random Forest</td><td class="c">0,514 → 0,627</td><td class="c">0,585 → 0,629</td><td class="c">0,691 → 0,703</td><td class="c mejor">0,721 → 0,721</td></tr>
+    <tr><td colspan="5"><i>Dummy (mayoritaria): 0,197 · Dummy (estratificado): 0,340</i></td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<div class="flotante">
+  <div class="cap">Figura 3. <span>Macro-F1 en validación cruzada por representación y clasificador. Las barras de error son la desviación estándar entre pliegues.</span></div>
+  <img src="figuras/fig3_cv_comparacion.png" alt="Comparación en validación cruzada">
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<p>El marcado de negaciones e intensificadores no mejoró TF-IDF: con regresión logística, la mejor configuración con preprocesamiento básico obtuvo 0,621 y la mejor con marcado 0,615. Una explicación es que los bigramas ya capturan la mayor parte de esas combinaciones («no fue», «muy claro»), así que el marcado solo agrega dimensiones redundantes.</p>
+<p>La Figura 4 muestra los términos con mayor peso en la regresión logística sobre TF-IDF de palabras. Para la clase negativa aparecen «no», «la falta» y «confusa», y para la positiva «fue muy», «excelente» y «ayudó», lo cual es coherente. Pero para la clase neutral los términos más fuertes son «neutral» y «bastante neutral»: al revisar el corpus se encontró que el 25&nbsp;% de los comentarios neutrales contiene literalmente la palabra «neutral» o «neutro» («la enseñanza fue bastante neutral»), frente al 5&nbsp;% de los negativos. Esto sugiere que parte de los comentarios fue generada a partir de la etiqueta, un rasgo que facilita artificialmente la tarea y que no se espera en comentarios reales.</p>
+
+<div class="flotante">
+  <div class="cap">Figura 4. <span>Diez términos con mayor coeficiente por clase (regresión logística + TF-IDF de palabras).</span></div>
+  <img src="figuras/fig5_terminos.png" alt="Términos más influyentes">
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<h3>2. Evaluación en el conjunto de prueba</h3>
+<p>El modelo con mejor macro-F1 en validación cruzada fue <b>embeddings MPNet + Random Forest</b> (0,721), con los hiperparámetros por defecto (sin profundidad máxima, una muestra mínima por hoja y sin pesos de clase). La Tabla 5 resume el macro-F1 en prueba de todas las combinaciones ajustadas. El modelo seleccionado obtuvo también el mejor resultado en prueba: <b>macro-F1 de 0,681</b>, exactitud de 0,694, precisión macro de 0,714 y exhaustividad macro de 0,669. El intervalo de confianza del 95&nbsp;% para el macro-F1 es [0,583; 0,759]. Es un intervalo amplio, propio de un conjunto de prueba de 124 comentarios, y contiene a los demás modelos basados en embeddings: entre ellos no hay diferencias que se puedan afirmar con estos datos. Lo que sí se mantiene en validación cruzada y en prueba es la ventaja de los embeddings sobre TF-IDF.</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 5. <span>Macro-F1 en el conjunto de prueba (124 comentarios) de los modelos ajustados.</span></div>
+  <table>
+    <tr><th>Clasificador</th><th class="c">TF-IDF palabras</th><th class="c">TF-IDF caracteres</th><th class="c">Emb. MiniLM</th><th class="c">Emb. MPNet</th></tr>
+    <tr><td>Regresión logística</td><td class="c">0,581</td><td class="c">0,598</td><td class="c">0,680</td><td class="c">0,663</td></tr>
+    <tr><td>SVM lineal</td><td class="c">0,583</td><td class="c">0,575</td><td class="c">0,665</td><td class="c">0,677</td></tr>
+    <tr><td>Naive Bayes</td><td class="c">0,535</td><td class="c">0,582</td><td class="c">0,665</td><td class="c">0,630</td></tr>
+    <tr><td>Random Forest</td><td class="c">0,560</td><td class="c">0,623</td><td class="c">0,634</td><td class="c mejor">0,681</td></tr>
+    <tr><td colspan="5"><i>Dummy (mayoritaria): 0,197 (exactitud 0,419) · Dummy (estratificado): 0,323</i></td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<p>La Tabla 6 y la Figura 5 desglosan el resultado por clase. La clase negativa es la mejor reconocida (F1 de 0,73) y la positiva la peor (0,60). El patrón de la matriz de confusión es claro: el modelo casi nunca confunde los extremos (ningún negativo se predijo como positivo y solo 4 positivos como negativos), pero tiende a refugiarse en la clase neutral. De los 31 comentarios positivos, 15 se predijeron como neutrales, y por eso el <i>recall</i> positivo es apenas 0,52 mientras el neutral llega a 0,81.</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 6. <span>Métricas por clase del modelo final en el conjunto de prueba.</span></div>
+  <table>
+    <tr><th>Clase</th><th class="c">Precisión</th><th class="c">Recall</th><th class="c">F1</th><th class="c">Soporte</th></tr>
+    <tr><td>Negativo</td><td class="c">0,778</td><td class="c">0,683</td><td class="c">0,727</td><td class="c">41</td></tr>
+    <tr><td>Neutral</td><td class="c">0,636</td><td class="c">0,808</td><td class="c">0,712</td><td class="c">52</td></tr>
+    <tr><td>Positivo</td><td class="c">0,727</td><td class="c">0,516</td><td class="c">0,604</td><td class="c">31</td></tr>
+    <tr><td><b>Macro</b></td><td class="c"><b>0,714</b></td><td class="c"><b>0,669</b></td><td class="c"><b>0,681</b></td><td class="c">124</td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<div class="flotante">
+  <div class="cap">Figura 5. <span>Matriz de confusión del modelo final (MPNet + Random Forest) en el conjunto de prueba.</span></div>
+  <img src="figuras/fig4_matriz_confusion.png" alt="Matriz de confusión">
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<p>La proyección t-SNE de los embeddings (Figura 6) ayuda a entender ese límite. Los negativos se concentran en una región y los positivos en otra, pero los neutrales están repartidos por todo el espacio y se superponen con ambas clases. En otras palabras, la frontera entre «neutral» y las otras dos clases no está bien definida ni siquiera en un espacio semántico.</p>
+
+<div class="flotante">
+  <div class="cap">Figura 6. <span>Proyección t-SNE en dos dimensiones de los embeddings MPNet de los 617 comentarios.</span></div>
+  <img class="media" src="figuras/fig6_tsne.png" alt="Proyección t-SNE">
+  <div class="fuente">Fuente: elaboración propia.</div>
+</div>
+
+<h3>3. Análisis de errores y calidad de las etiquetas</h3>
+<p>Los 38 comentarios de prueba mal clasificados se agruparon en cuatro categorías (Tabla 7). Dos tercios son comentarios con <b>sentimiento mixto o ambiguo</b>, donde la etiqueta asignada es defendible pero la otra opción también lo sería. Un ejemplo es «El curso fue bastante interesante, pero en algunos momentos se me hizo un poco abrumador… Afortunadamente, los contenidos fueron bien organizados», etiquetado como positivo y predicho como neutral. El efecto de los conectores de contraste se nota en las cifras: la exactitud es de 0,68 en los 108 comentarios de prueba que los contienen y de 0,81 en los 16 que no, aunque esta segunda cifra se basa en muy pocos casos.</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 7. <span>Categorías de los 38 errores del modelo final en el conjunto de prueba.</span></div>
+  <table>
+    <tr><th style="width:28%">Categoría</th><th class="c" style="width:11%">n</th><th>Descripción y ejemplo</th></tr>
+    <tr><td>Sentimiento mixto o ambiguo</td><td class="c">25 (66&nbsp;%)</td><td>Elogios y críticas en el mismo texto, o valoración tenue; la frontera con «neutral» es subjetiva. Ej.: «Estoy bastante satisfecho… aunque algunas veces la carga de trabajo fue algo alta» (real: positivo; predicho: neutral).</td></tr>
+    <tr><td>Etiqueta probablemente incorrecta</td><td class="c">9 (24&nbsp;%)</td><td>La predicción es más razonable que la etiqueta. Ej.: «El curso no tiene una organización clara… me genera una sensación de confusión y pérdida de tiempo» (real: neutral; predicho: negativo).</td></tr>
+    <tr><td>Error claro del modelo</td><td class="c">2 (5&nbsp;%)</td><td>La etiqueta es correcta y el texto no es ambiguo. Ej.: «La disponibilidad de los recursos en el aula digital fue muy satisfactoria…» (real: positivo; predicho: neutral).</td></tr>
+    <tr><td>Texto que no es una evaluación</td><td class="c">2 (5&nbsp;%)</td><td>Artefactos de generación automática, sin respuesta correcta posible. Ej.: «Estimado estudiante, recuerda que la satisfacción en tu aprendizaje es importante… [Tu nombre]».</td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia con apoyo de un LLM; casos señalados validados por los autores.</div>
+</div>
+
+<p>Los dos textos que no son evaluaciones merecen una aclaración. Uno es un mensaje dirigido <i>a</i> un estudiante y el otro una respuesta típica de un asistente de IA («Lo siento, pero como estudiante universitario, no tengo la capacidad…»). En el conjunto traen una etiqueta, pero la pregunta sobre su polaridad no aplica, así que cualquier predicción es arbitraria. Una búsqueda por palabras clave en todo el corpus encontró un tercer caso en el conjunto de entrenamiento («Estoy encantada de haber podido asistirte hoy…», etiquetado como positivo). Son 3 de 617 textos (0,5&nbsp;%), un efecto despreciable sobre las métricas, por lo que se conservaron y se documentan aquí.</p>
+<p>Para saber si el ruido de etiquetas se limita a los errores o afecta a todo el corpus, se auditó una muestra aleatoria de 50 comentarios con los criterios de la Tabla 2 (Tabla 8). El 68&nbsp;% tiene una etiqueta coherente con el texto, el 24&nbsp;% es discutible por sentimiento mixto y el 8&nbsp;% es claramente incoherente, como «En general, mi experiencia fue satisfactoria aunque con algunas dificultades al principio», etiquetado como negativo. Con un 8&nbsp;% de etiquetas incorrectas y un 24&nbsp;% de casos ambiguos, el techo alcanzable por cualquier clasificador queda bastante por debajo de 1, y parte de lo que el modelo aprende es el propio ruido [20].</p>
+
+<div class="flotante">
+  <div class="cap">Tabla 8. <span>Auditoría de etiquetas sobre una muestra aleatoria de 50 comentarios.</span></div>
+  <table>
+    <tr><th>Juicio sobre la etiqueta</th><th class="c">Comentarios</th><th class="c">Porcentaje</th></tr>
+    <tr><td>Coherente con el texto</td><td class="c">34</td><td class="c">68&nbsp;%</td></tr>
+    <tr><td>Discutible (sentimiento mixto)</td><td class="c">12</td><td class="c">24&nbsp;%</td></tr>
+    <tr><td>Incoherente con el texto</td><td class="c">4</td><td class="c">8&nbsp;%</td></tr>
+  </table>
+  <div class="fuente">Fuente: elaboración propia con apoyo de un LLM; casos discutibles e incoherentes validados por los autores.</div>
+</div>
+
+<h3>4. Persistencia del modelo</h3>
+<p>El <code>Pipeline</code> completo (codificador de embeddings + Random Forest) se guardó con joblib, junto con un archivo de metadatos que registra las métricas, los hiperparámetros, las versiones de Python y de las librerías y un hash del conjunto de datos. Al cargarlo en un proceso limpio, el modelo tarda unos 8 segundos en iniciar (por la carga de MPNet) y luego clasifica 100 comentarios en 1,9 segundos, unos 18 ms por comentario en CPU. También devuelve probabilidades por clase, que el MVP podrá mostrar como nivel de confianza. Una prueba con un texto vacío devolvió «neutral» con probabilidades casi uniformes (0,33 / 0,39 / 0,28), así que el MVP deberá validar la entrada antes de llamar al modelo.</p>
+
+<h2>Conclusiones</h2>
+<p>Se construyó y evaluó de forma reproducible un clasificador de polaridad para comentarios de evaluación docente en español. La conclusión principal es que <b>la representación importa más que el clasificador</b>: los embeddings multilingües de oraciones superaron a TF-IDF en cerca de nueve puntos de macro-F1, de forma consistente en validación cruzada y en prueba, mientras que entre los cuatro clasificadores sobre embeddings las diferencias fueron pequeñas y no significativas. El modelo seleccionado, MPNet + Random Forest, obtuvo un macro-F1 de 0,681 en prueba, más del triple que la línea base mayoritaria.</p>
+<p>La segunda conclusión es que <b>el límite actual está en los datos</b>. Dos de cada tres errores son comentarios con sentimiento mixto, el 83&nbsp;% del corpus contiene conectores de contraste, y la auditoría de etiquetas encontró un 8&nbsp;% de etiquetas incoherentes. Además, la presencia literal de la palabra «neutral» en muchos comentarios neutrales y de textos que no son evaluaciones indica que parte del corpus fue generada automáticamente, así que los resultados deben validarse con comentarios reales antes de usarse en decisiones institucionales.</p>
+<p>Como trabajo futuro se propone: (1) reetiquetar con los criterios de la Tabla 2, sobre todo en la frontera entre neutral y las otras clases, y medir el acuerdo entre anotadores; (2) aprovechar la columna de aspectos, normalizando sus 22 nombres, para pasar de una polaridad global a una polaridad por aspecto, que es más accionable para el docente; (3) probar el ajuste fino de un transformer en español; y (4) integrar el <code>Pipeline</code> guardado en un MVP con una API y una interfaz sencilla que acepte comentarios individuales o archivos CSV, e incluya un filtro que descarte textos que no sean evaluaciones.</p>
+
+<h2>Referencias</h2>
+<div class="refs">
+<p>[1] B. Uttl, C. A. White, and D. W. Gonzalez, “Meta-analysis of faculty’s teaching effectiveness: Student evaluation of teaching ratings and student learning are not related,” <i>Stud. Educ. Eval.</i>, vol. 54, pp. 22–42, 2017, doi: 10.1016/j.stueduc.2016.08.007.</p>
+<p>[2] Z. Kastrati, F. Dalipi, A. S. Imran, K. Pireva Nuci, and M. A. Wani, “Sentiment analysis of students’ feedback with NLP and deep learning: A systematic mapping study,” <i>Appl. Sci.</i>, vol. 11, no. 9, Art. no. 3986, 2021, doi: 10.3390/app11093986.</p>
+<p>[3] T. Shaik, X. Tao, C. Dann, H. Xie, Y. Li, and L. Galligan, “Sentiment analysis and opinion mining on educational data: A survey,” <i>Nat. Lang. Process. J.</i>, vol. 2, Art. no. 100003, 2023, doi: 10.1016/j.nlp.2022.100003.</p>
+<p>[4] Q. Rajput, S. Haider, and S. Ghani, “Lexicon-based sentiment analysis of teachers’ evaluation,” <i>Appl. Comput. Intell. Soft Comput.</i>, vol. 2016, Art. no. 2385429, 2016, doi: 10.1155/2016/2385429.</p>
+<p>[5] B. Pang, L. Lee, and S. Vaithyanathan, “Thumbs up? Sentiment classification using machine learning techniques,” in <i>Proc. Conf. Empirical Methods Natural Lang. Process. (EMNLP)</i>, 2002, pp. 79–86.</p>
+<p>[6] J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “BERT: Pre-training of deep bidirectional transformers for language understanding,” in <i>Proc. NAACL-HLT</i>, 2019, pp. 4171–4186.</p>
+<p>[7] N. Reimers and I. Gurevych, “Sentence-BERT: Sentence embeddings using Siamese BERT-networks,” in <i>Proc. EMNLP-IJCNLP</i>, 2019, pp. 3982–3992.</p>
+<p>[8] F. Gilardi, M. Alizadeh, and M. Kubli, “ChatGPT outperforms crowd workers for text-annotation tasks,” <i>Proc. Natl. Acad. Sci. USA</i>, vol. 120, no. 30, Art. no. e2305016120, 2023, doi: 10.1073/pnas.2305016120.</p>
+<p>[9] F. Pedregosa <i>et al.</i>, “Scikit-learn: Machine learning in Python,” <i>J. Mach. Learn. Res.</i>, vol. 12, pp. 2825–2830, 2011.</p>
+<p>[10] S. Kaufman, S. Rosset, C. Perlich, and O. Stitelman, “Leakage in data mining: Formulation, detection, and avoidance,” <i>ACM Trans. Knowl. Discov. Data</i>, vol. 6, no. 4, Art. no. 15, 2012.</p>
+<p>[11] G. Salton and C. Buckley, “Term-weighting approaches in automatic text retrieval,” <i>Inf. Process. Manage.</i>, vol. 24, no. 5, pp. 513–523, 1988.</p>
+<p>[12] N. Reimers and I. Gurevych, “Making monolingual sentence embeddings multilingual using knowledge distillation,” in <i>Proc. EMNLP</i>, 2020, pp. 4512–4525, doi: 10.18653/v1/2020.emnlp-main.365.</p>
+<p>[13] W. Wang, F. Wei, L. Dong, H. Bao, N. Yang, and M. Zhou, “MiniLM: Deep self-attention distillation for task-agnostic compression of pre-trained transformers,” in <i>Adv. Neural Inf. Process. Syst.</i>, vol. 33, 2020, pp. 5776–5788.</p>
+<p>[14] K. Song, X. Tan, T. Qin, J. Lu, and T.-Y. Liu, “MPNet: Masked and permuted pre-training for language understanding,” in <i>Adv. Neural Inf. Process. Syst.</i>, vol. 33, 2020, pp. 16857–16867.</p>
+<p>[15] C. M. Bishop, <i>Pattern Recognition and Machine Learning</i>. New York, NY, USA: Springer, 2006.</p>
+<p>[16] C. Cortes and V. Vapnik, “Support-vector networks,” <i>Mach. Learn.</i>, vol. 20, no. 3, pp. 273–297, 1995.</p>
+<p>[17] A. McCallum and K. Nigam, “A comparison of event models for naive Bayes text classification,” in <i>Proc. AAAI-98 Workshop Learn. Text Categorization</i>, 1998, pp. 41–48.</p>
+<p>[18] L. Breiman, “Random forests,” <i>Mach. Learn.</i>, vol. 45, no. 1, pp. 5–32, 2001.</p>
+<p>[19] M. Sokolova and G. Lapalme, “A systematic analysis of performance measures for classification tasks,” <i>Inf. Process. Manage.</i>, vol. 45, no. 4, pp. 427–437, 2009.</p>
+<p>[20] B. Frénay and M. Verleysen, “Classification in the presence of label noise: A survey,” <i>IEEE Trans. Neural Netw. Learn. Syst.</i>, vol. 25, no. 5, pp. 845–869, 2014.</p>
+</div>
+
+</body>
+</html>
