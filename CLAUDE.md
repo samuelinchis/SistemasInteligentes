@@ -1,7 +1,11 @@
 # CLAUDE.md — Proyecto Sistemas Inteligentes (clasificación de evaluaciones docentes)
 
+## Pendientes
+- [ ] **Comenzar el MVP** (diapositivas 5 y 6 de `docs/CL12_26102026.pdf`). Pausado a pedido del usuario el 2026-11-05 para retomarlo después; ver la sección «Notas para el MVP» más abajo.
+- [x] Paper (`paper/paper.pdf`) terminado, revisado y subido a `main` (2026-11-05).
+
 ## Contexto académico
-- Curso: Sistemas Inteligentes. Autor del trabajo: Jhon David Rios Aguirre (repo compartido con un compañero, remoto `samuelinchis/SistemasInteligentes`).
+- Curso: Sistemas Inteligentes. Equipo de cinco integrantes (ver «Estado»); remoto `samuelinchis/SistemasInteligentes`.
 - Parte anterior (20 %, ya entregada, fuera de este repo): `../Informe_ML.pdf` + notebooks de ML supervisado/no supervisado con datos sintéticos.
 - **Parte actual (20 %)**: investigación + **paper** sobre clasificación de comentarios de estudiantes (Student Evaluation of Teaching, SET). Entregable final en **PDF**.
 - **Después**: un MVP básico que use el modelo entrenado (ver diapositivas 5 y 6).
