@@ -1,0 +1,13 @@
+# Dependencias del MVP (API + Streamlit + pruebas)
+# Mantener scikit-learn en la misma versión usada para entrenar (1.9.1).
+-r requirements.txt
+
+fastapi==0.163.1
+uvicorn[standard]==0.54.0
+streamlit==1.67.0
+python-multipart==0.0.33
+pydantic==2.14.3
+
+# Pruebas
+pytest==9.2.0
+httpx==0.28.1

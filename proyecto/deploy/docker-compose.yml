@@ -1,0 +1,78 @@
+# MVP completo en contenedores: API, Streamlit y un servicio de herramientas
+# para ejecutar pruebas o scripts sin instalar Python en el equipo anfitrión.
+#
+# Uso desde la raíz del repositorio:
+#   docker compose -f proyecto/deploy/docker-compose.yml up --build -d
+#   docker compose -f proyecto/deploy/docker-compose.yml run --rm tools python -m pytest -q
+
+x-imagen: &imagen
+  image: set-mvp:1.0.0
+
+name: set-mvp
+
+services:
+  api:
+    <<: *imagen
+    build:
+      context: ../..
+      dockerfile: proyecto/deploy/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      MVP_CORS_ORIGINS: "http://localhost:8501"
+      MVP_VERIFICAR_HASH: "1"
+    volumes:
+      - hf_cache:/datos/huggingface
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/salud"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+    restart: unless-stopped
+
+  app:
+    <<: *imagen
+    command:
+      - streamlit
+      - run
+      - proyecto/app/streamlit_app.py
+      - --server.address=0.0.0.0
+      - --server.port=8501
+      - --server.headless=true
+    ports:
+      - "8501:8501"
+    environment:
+      MVP_CORS_ORIGINS: "http://localhost:8501"
+    volumes:
+      - hf_cache:/datos/huggingface
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8501/_stcore/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # No se inicia con `up` (perfil "tools"). Se usa bajo demanda:
+  #   docker compose -f proyecto/deploy/docker-compose.yml run --rm tools python -m pytest -q
+  #   docker compose -f proyecto/deploy/docker-compose.yml run --rm tools bash
+
+  tools:
+    <<: *imagen
+    profiles: ["tools"]
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    command: ["bash"]
+    environment:
+      HF_HOME: /datos/huggingface
+      TOKENIZERS_PARALLELISM: "false"
+    volumes:
+      - hf_cache:/datos/huggingface
+
+volumes:
+  hf_cache:
