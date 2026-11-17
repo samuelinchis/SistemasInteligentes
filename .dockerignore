@@ -1,0 +1,11 @@
+.git
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+docs/
+paper/
+proyecto/data/raw/
+*.pdf
+.env

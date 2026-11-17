@@ -1,7 +1,7 @@
 # CLAUDE.md — Proyecto Sistemas Inteligentes (clasificación de evaluaciones docentes)
 
 ## Pendientes
-- [ ] **Comenzar el MVP** (diapositivas 5 y 6 de `docs/CL12_26102026.pdf`). Pausado a pedido del usuario el 2026-11-05 para retomarlo después; ver la sección «Notas para el MVP» más abajo.
+- [x] **MVP implementado** (diapositivas 5 y 6 de `docs/CL12_26102026.pdf`): predictor compartido, API FastAPI, interfaz Streamlit, registro de versiones con verificación SHA-256, pruebas y Docker (2026-11-15). Ver «MVP» más abajo.
 - [x] Paper (`paper/paper.pdf`) terminado, revisado y subido a `main` (2026-11-05).
 
 ## Contexto académico
@@ -49,7 +49,14 @@ Cada tabla/figura: título arriba ("Table 1. …") y fuente abajo ("Source: Auth
 
 ## Código
 - `proyecto/src/depurar.py`: limpieza (pasos 1–2 de la diap. 4). Une los 3 CSV, quita encabezados repetidos, crea `id_global`, normaliza polaridad y curso, guarda `proyecto/data/processed/dataset_depurado.csv`. Ejecutar: `python proyecto/src/depurar.py`.
-- Entorno: Python 3.13, pandas 3, scikit-learn 1.9, matplotlib, seaborn, joblib, reportlab. (sentence-transformers no está instalado aún.)
+- `proyecto/src/preprocesamiento.py`: `normalizar_basico` / `normalizar_marcado` (emojis, negación, intensificadores).
+- `proyecto/src/representaciones.py`: `EmbeddingsFrase`, transformador sklearn sobre sentence-transformers (con caché).
+- `proyecto/src/experimentos.py`: pasos 3–7 del paper; guarda `modelo_polaridad.joblib` y `metadata.json`.
+- `proyecto/src/predictor.py`: núcleo del MVP. Carga perezosa, verifica SHA-256 contra `modelos/registro.json`, valida entradas (vacío, truncado, lote), devuelve salida estructurada con probabilidades, confianza, margen y `requiere_revision`.
+- `proyecto/src/gestion_modelos.py`: `listar` / `verificar` / `registrar` / `activar` versiones (reversión sin tocar código).
+- `proyecto/api/main.py`: FastAPI. Endpoints `/predecir`, `/predecir/lote`, `/predecir/csv`, `/salud`, `/modelo`, `/metricas`; logs JSON sin textos y CORS configurable.
+- `proyecto/app/streamlit_app.py`: interfaz de comentario individual y CSV, con descarga de predicciones y alertas de revisión.
+- Entorno: Python 3.13 en entrenamiento; MVP probado localmente con Python 3.12 y scikit-learn 1.9.1. (sentence-transformers 6.2.0, torch 2.15.0+cpu.)
 
 ## Estructura
 ```
@@ -57,17 +64,28 @@ docs/        enunciado (PDF) y template de la revista
 proyecto/
   data/raw/          CSV originales (entregados por el profesor; comentarios creados para el ejercicio)
   data/processed/    dataset depurado, errores_test.csv y revision_etiquetas.csv
-  src/depurar.py           limpieza (pasos 1-2)
-  src/preprocesamiento.py  normalizar_basico / normalizar_marcado (emojis, negación, intensificadores)
-  src/representaciones.py  EmbeddingsFrase: transformador sklearn sobre sentence-transformers (con caché)
-  src/experimentos.py      pasos 3-7: división, CV, GridSearch, test, figuras, guarda modelo
+  src/
+    depurar.py               limpieza (pasos 1-2)
+    preprocesamiento.py      normalizar_basico / normalizar_marcado
+    representaciones.py      EmbeddingsFrase sobre sentence-transformers
+    experimentos.py          pasos 3-7 del paper
+    predictor.py             núcleo del MVP (carga, validación, salida estructurada)
+    gestion_modelos.py       registro y reversión de versiones
+  api/main.py                FastAPI
+  app/streamlit_app.py       interfaz Streamlit
+  scripts/validar_modelo.py  smoke test de carga, coherencia y latencia
+  tests/                     pytest unitario, API e integración con MPNet
+  deploy/                    Dockerfile + docker-compose (API + Streamlit)
   resultados/        CSV/JSON de métricas (sin textos) + log
-  modelos/           modelo_polaridad.joblib + metadata.json
-  requirements.txt   versiones exactas usadas para entrenar
+  modelos/           modelo_polaridad.joblib + metadata.json + registro.json
+  requirements.txt       versiones exactas usadas para entrenar
+  requirements-mvp.txt   API, Streamlit y pruebas
 paper/
   paper.html         fuente del paper (editar aquí)
   paper.pdf          entregable
   figuras/           PNG generados por experimentos.py
+.streamlit/config.toml   tema de la interfaz
+pytest.ini               configuración de pruebas
 ```
 
 ## Cómo reproducir
@@ -77,6 +95,19 @@ PYTHONPATH=proyecto/src python proyecto/src/experimentos.py      # ~5 min en CPU
 msedge --headless=new --no-pdf-header-footer --print-to-pdf=paper\paper.pdf paper\paper.html
 ```
 Ojo: en figuras, el archivo `fig5_terminos.png` es la Figura 4 del paper y `fig4_matriz_confusion.png` la Figura 5.
+
+## MVP (2026-11-15)
+- Entorno local usado: Python 3.12.4 + `venv/` (ignorado por git), scikit-learn 1.9.1, sentence-transformers 6.2.0, torch 2.15.0+cpu, FastAPI 0.163.1, Streamlit 1.67.0.
+- Instalar: `pip install -r proyecto/requirements-mvp.txt` (torch CPU primero, ver `proyecto/README.md`).
+- Validar: `python proyecto/scripts/validar_modelo.py` → joblib verificado, 3 casos correctos, vacío neutral con revisión, ~30 ms/comentario después de cargar MPNet.
+- API: `python -m uvicorn proyecto.api.main:app --port 8000`; Streamlit: `python -m streamlit run proyecto/app/streamlit_app.py`.
+- Pruebas: `python -m pytest` (21 pruebas sin MPNet) y `RUN_INTEGRATION=1 python -m pytest proyecto/tests/test_integracion.py` (4 pruebas reales). Todas pasan.
+- Salida: `{polaridad, confianza, margen, probabilidades, aspecto, requiere_revision, motivos_revision}`. `aspecto` es un campo preparado; el modelo solo predice polaridad global.
+- Versión activa: `modelo_polaridad.joblib` v1.0.0, SHA-256 `224bb1d8…`, en `modelos/registro.json`. Reversión con `gestion_modelos.py activar`.
+- Privacidad: los logs no guardan comentarios; la app procesa localmente. No cargar joblib de terceros.
+- Docker: `proyecto/deploy/Dockerfile` + `docker-compose.yml` (API 8000, Streamlit 8501, caché HF compartida, servicio `tools` para pruebas/scripts). Verificado: `up --build -d`, `/salud`, `/predecir` real, `pytest` (21) y 4 de integración dentro del contenedor. No requiere Python local.
+- Resultados de la validación end-to-end: `/predecir` correcto; CSV de 617 filas procesado por la API (~134 s) con distribución neg 200 / neu 273 / pos 144 y 37 casos marcados para revisión. La app Streamlit se probó con `AppTest`: sin excepciones y predicción individual correcta.
+- Cambios del MVP publicados en la rama `MVP_V1` (no en `main`), 2026-11-16.
 
 ## Estado (2026-11-05)
 - Autores (en este orden): Nicolás Gómez Giraldo, Samuel Rueda Sánchez, José Harvey Barrera Ramos, Esteban Muñoz Serrano, Jhon David Rios Aguirre. Paper redactado en **impersonal** (varios autores).

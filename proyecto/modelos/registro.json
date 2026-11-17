@@ -1,0 +1,12 @@
+{
+  "version_activa": "1.0.0",
+  "modelos": [
+    {
+      "version": "1.0.0",
+      "archivo": "modelo_polaridad.joblib",
+      "sha256": "224bb1d84f71975c0a1f5d622ce059ee7146128c4cb200603c7ec3d58398ee00",
+      "fecha": "2026-11-05",
+      "notas": "MPNet multilingüe + Random Forest. Test macro-F1 0,681 y exactitud 0,694 sobre 124 comentarios."
+    }
+  ]
+}
