@@ -114,6 +114,13 @@ Ojo: en figuras, el archivo `fig5_terminos.png` es la Figura 4 del paper y `fig4
 - Modo oscuro (2026-11-25): `.streamlit/config.toml` define `[theme.light]` y `[theme.dark]`; la app sigue la preferencia del sistema y se cambia en ⋮ → Settings. El CSS propio (tarjetas, texto secundario) usa colores semitransparentes. Verificado en Edge en ambos modos: comentario individual, carga de CSV y «Acerca del modelo», sin excepciones.
 - Limitación conocida (no es un error del MVP): frases positivas sin adjetivos evaluativos fuertes («domina el tema», «clases dinámicas») salen neutral con probabilidades casi uniformes: es limitación del modelo (ya descrita en el paper) y queda marcada para revisión.
 
+## Presentación final (2026-11-25)
+- Pide el profesor: desarrollo/arquitectura/tecnologías, modelo/métricas/integración, instalar/ejecutar/usar, funcionamiento (comentario y CSV).
+- Canva: diseño «Clasificación de polaridad» (id `DAHb-RVVD5o`, https://www.canva.com/d/SUXh4LfVafjm6VX), 16 diapositivas, 15 min, paleta del paper. Guion de cada integrante en las notas del orador.
+- Guion completo: `presentacion/guion.md` (5 bloques de ~320 palabras, sin nombres: «Integrante 1…5»; incluye guía de demo en vivo y preguntas probables).
+- Reparto: 1 problema/datos/desarrollo (diap. 1-4) · 2 modelo y métricas (5-7) · 3 arquitectura/tecnologías/integración (8-10) · 4 instalación/ejecución/destacados (11-13) · 5 demo y conclusiones (14-16).
+- La generación automática de Canva ignoró las imágenes y puso textos de relleno; se corrigió a mano con capturas reales (Edge headless vía CDP) y figuras del paper. Para subir a Canva usar `curl` (Python urllib recibe 403).
+
 ## Estado (2026-11-05)
 - Autores (en este orden): Nicolás Gómez Giraldo, Samuel Rueda Sánchez, José Harvey Barrera Ramos, Esteban Muñoz Serrano, Jhon David Rios Aguirre. Paper redactado en **impersonal** (varios autores).
 - Revisión de etiquetas: `proyecto/data/processed/revision_etiquetas.csv` (juicio del LLM + columna `juicio_humano`). El usuario validó los 28 casos señalados (incoherentes/incorrectas, discutibles, errores del modelo, no evaluaciones); los «coherentes» y «mixtos» no se revisaron uno por uno.
