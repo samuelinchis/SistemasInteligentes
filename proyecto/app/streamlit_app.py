@@ -61,11 +61,12 @@ def _css() -> None:
             display: inline-block; padding: .25rem .7rem; border-radius: 999px;
             color: white; font-weight: 700; font-size: .95rem;
         }}
+        /* Colores semitransparentes: funcionan igual en tema claro y oscuro. */
         .card {{
-            border: 1px solid #dfe4ef; border-radius: 12px; padding: .9rem 1.05rem;
-            background: #fbfcff; margin-bottom: .8rem;
+            border: 1px solid rgba(128, 140, 170, .30); border-radius: 12px; padding: .9rem 1.05rem;
+            background: rgba(128, 140, 170, .07); margin-bottom: .8rem;
         }}
-        .muted {{ color: #5f6b81; font-size: .85rem; }}
+        .muted {{ opacity: .72; font-size: .85rem; }}
         .stButton>button {{ border-radius: 8px; }}
         </style>
         """,

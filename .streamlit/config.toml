@@ -1,9 +1,20 @@
+# Tema doble: Streamlit sigue la preferencia del sistema y permite elegir
+# Claro / Oscuro / Sistema en el menú ⋮ → Settings.
 [theme]
+font = "sans serif"
+
+[theme.light]
 primaryColor = "#1b2a6b"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#f5f7fb"
 textColor = "#1f2937"
-font = "sans serif"
+
+[theme.dark]
+# Azul más claro que el de la paleta para mantener contraste sobre fondo oscuro.
+primaryColor = "#5b7cfa"
+backgroundColor = "#0f1424"
+secondaryBackgroundColor = "#1a2138"
+textColor = "#e5e7eb"
 
 [server]
 maxUploadSize = 10
