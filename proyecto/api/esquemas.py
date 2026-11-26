@@ -19,13 +19,18 @@ class PeticionComentario(BaseModel):
 
 
 class PeticionLote(BaseModel):
-    comentarios: list[str] = Field(
+    comentarios: list[str | None] = Field(
         ...,
         min_length=1,
-        description="Lista de comentarios. Máximo configurable con MVP_MAX_LOTE (1000 por defecto).",
+        description=(
+            "Lista de comentarios. Máximo configurable con MVP_MAX_LOTE (1000 por defecto). "
+            "Un null se trata como texto vacío y se marca para revisión, igual que una celda vacía del CSV."
+        ),
         examples=[["Excelente curso.", "No me gustaron las clases."]],
     )
-    aspectos: list[str] | None = Field(None, description="Un aspecto por comentario (opcional).")
+    aspectos: list[str | None] | None = Field(
+        None, description="Un aspecto por comentario (opcional; null equivale a 'general')."
+    )
     ids: list[str | int | None] | None = Field(None, description="Un identificador por comentario (opcional).")
     incluir_texto: bool = Field(True, description="Incluir el comentario recibido en la respuesta.")
 

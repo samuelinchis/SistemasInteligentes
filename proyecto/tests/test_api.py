@@ -66,6 +66,21 @@ def test_predecir_lote_y_validacion(cliente):
     assert malo.status_code == 422
 
 
+def test_predecir_lote_acepta_null(cliente):
+    r = cliente.post(
+        "/predecir/lote",
+        json={"comentarios": ["Excelente curso.", None], "aspectos": ["docencia", None]},
+    )
+    assert r.status_code == 200
+    excelente, vacio = r.json()["resultados"]
+    assert excelente["polaridad"] == "positivo"
+    assert excelente["aspecto"] == "docencia"
+    assert vacio["advertencia"] == "texto_vacio"
+    assert vacio["requiere_revision"] is True
+    assert vacio["aspecto"] == "general"
+    assert vacio["comentario"] == ""
+
+
 def test_csv_json_y_descarga(cliente):
     csv = "id,comentario\n1,Excelente curso.\n2,No me gustó la clase.\n".encode("utf-8")
     r = cliente.post(
