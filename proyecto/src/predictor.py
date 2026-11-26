@@ -37,6 +37,9 @@ MAX_LOTE = int(os.getenv("MVP_MAX_LOTE", "1000"))
 UMBRAL_CONFIANZA = float(os.getenv("MVP_UMBRAL_CONFIANZA", "0.50"))
 UMBRAL_MARGEN = float(os.getenv("MVP_UMBRAL_MARGEN", "0.10"))
 VERIFICAR_HASH = os.getenv("MVP_VERIFICAR_HASH", "1") not in {"0", "false", "False"}
+# El joblib no guarda MPNet (ver EmbeddingsFrase.__getstate__): sin calentamiento,
+# el codificador se descarga/carga en la primera predicción (~7 s).
+CALENTAR = os.getenv("MVP_CALENTAR", "1") not in {"0", "false", "False"}
 
 
 class ErrorModelo(RuntimeError):
@@ -72,6 +75,7 @@ class Predictor:
         verificar_hash: bool = VERIFICAR_HASH,
         umbral_confianza: float = UMBRAL_CONFIANZA,
         umbral_margen: float = UMBRAL_MARGEN,
+        calentar: bool = CALENTAR,
     ) -> None:
         modelo_path = modelo_path or os.getenv("MVP_MODEL_PATH")
         self.modelo_path = Path(modelo_path) if modelo_path else None
@@ -80,6 +84,7 @@ class Predictor:
         self.verificar_hash = verificar_hash
         self.umbral_confianza = umbral_confianza
         self.umbral_margen = umbral_margen
+        self.calentar = calentar
         self._modelo = None
         self._metadata: dict = {}
         self._registro: dict = {}
@@ -125,6 +130,12 @@ class Predictor:
         clases = tuple(getattr(modelo, "classes_", ()))
         if clases and clases != CLASES_ESPERADAS:
             raise ErrorModelo(f"Clases inesperadas en el modelo: {clases}")
+
+        if self.calentar:  # carga el codificador ahora y no en la primera petición
+            try:
+                modelo.predict_proba(["Comentario de calentamiento del modelo."])
+            except Exception as exc:
+                raise ErrorModelo(f"Falló el calentamiento del modelo: {exc}") from exc
 
         self._modelo = modelo
         self._metadata = _leer_json(self.metadata_path)

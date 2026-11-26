@@ -209,6 +209,7 @@ Variables de entorno (todas opcionales):
 |---|---|---|
 | `MVP_MODEL_PATH` | versión activa del registro | joblib alternativo (no se verifica hash) |
 | `MVP_VERIFICAR_HASH` | `1` | comparar SHA-256 con `registro.json` |
+| `MVP_CALENTAR` | `1` | cargar MPNet al iniciar (una predicción de prueba) para que la primera petición no tarde ~7 s |
 | `MVP_MAX_CARACTERES` | `5000` | truncar comentarios largos |
 | `MVP_MAX_LOTE` | `1000` | máximo de filas por petición |
 | `MVP_UMBRAL_CONFIANZA` | `0.50` | umbral para marcar revisión |

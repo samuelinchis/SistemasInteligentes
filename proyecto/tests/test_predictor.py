@@ -122,3 +122,24 @@ def test_info_reporta_version_y_entorno(predictor_falso):
     assert info["metricas_test"]["f1_macro"] == 0.68
     assert len(info["matriz_confusion"]) == 3
     assert info["entorno"]["compatible"] is True
+
+
+@pytest.mark.parametrize("calentar, llamadas_esperadas", [(True, 1), (False, 0)])
+def test_cargar_calienta_el_modelo(tmp_path, monkeypatch, calentar, llamadas_esperadas):
+    from conftest import ModeloFalso
+
+    llamadas = []
+
+    class ModeloContado(ModeloFalso):
+        def predict_proba(self, textos):
+            llamadas.append(list(textos))
+            return super().predict_proba(textos)
+
+    ruta = tmp_path / "modelo.joblib"
+    ruta.write_bytes(b"no vacio")
+    monkeypatch.setattr(modulo_predictor.joblib, "load", lambda _: ModeloContado())
+
+    p = Predictor(modelo_path=ruta, registro_path=tmp_path / "sin_registro.json",
+                  verificar_hash=False, calentar=calentar).cargar()
+    assert p.cargado
+    assert len(llamadas) == llamadas_esperadas
