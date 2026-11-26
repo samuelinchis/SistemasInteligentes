@@ -1,6 +1,6 @@
 # Guion de la presentación · Clasificación de polaridad en evaluaciones docentes
 
-Duración total: unos 15 minutos. Cinco integrantes, tres diapositivas cada uno y unos 3 minutos por persona (unas 400 palabras). La portada la abre el integrante 1.
+Duración total: unos 15 minutos. Cinco integrantes, tres diapositivas cada uno y unos 3 minutos por persona (unas 320 palabras). La portada la abre Nicolás.
 
 Reglas para que todos hablen lo mismo:
 - Cada bloque tiene una entrada y una salida que da paso al siguiente integrante.
@@ -9,11 +9,11 @@ Reglas para que todos hablen lo mismo:
 
 ---
 
-## Integrante 1 · Problema, datos y desarrollo realizado (diapositivas 1 a 4)
+## Integrante 1 · Nicolás Gómez Giraldo · Problema, datos y desarrollo realizado (diapositivas 1 a 4)
 
 **Diapositiva 1 · Portada**
 
-Buenos días. Somos [nombres del equipo] y vamos a presentar nuestro proyecto de Sistemas Inteligentes: un clasificador de la polaridad de los comentarios que los estudiantes escriben al evaluar a sus profesores. Cada uno de nosotros va a presentar una parte.
+Buenos días. Somos Nicolás, Samuel, Esteban, José y Jhon, y vamos a presentar nuestro proyecto de Sistemas Inteligentes: un clasificador de la polaridad de los comentarios que los estudiantes escriben al evaluar a sus profesores. Cada uno de nosotros va a presentar una parte.
 
 **Diapositiva 2 · El problema**
 
@@ -33,11 +33,11 @@ El proyecto tuvo dos fases. En la primera seguimos siete pasos: exploración de 
 
 En la segunda construimos el MVP: un núcleo de inferencia, una API, una interfaz web, el versionado del modelo, pruebas automáticas y un despliegue con Docker.
 
-[Salida] Ahora [integrante 2] les va a contar cómo entrenamos y elegimos el modelo.
+[Salida] Ahora Samuel les va a contar cómo entrenamos y elegimos el modelo.
 
 ---
 
-## Integrante 2 · Modelo clasificador y métricas (diapositivas 5 a 7)
+## Integrante 2 · Samuel Rueda Sánchez · Modelo clasificador y métricas (diapositivas 5 a 7)
 
 **Diapositiva 5 · Cómo se entrenó el modelo**
 
@@ -55,11 +55,11 @@ El mejor en validación cruzada fue MPNet con Random Forest, y lo evaluamos una 
 
 La matriz de confusión muestra que el modelo casi nunca confunde los extremos: ningún negativo se predijo como positivo. Su debilidad es que tiende a refugiarse en la clase neutral: de 31 positivos, 15 los clasificó como neutrales. Al revisar los errores encontramos que dos de cada tres son comentarios mixtos, y una auditoría de las etiquetas mostró que el 8 % son incoherentes. El límite actual está más en los datos que en el modelo.
 
-[Salida] Con el modelo elegido, [integrante 3] les explica cómo lo integramos en la herramienta.
+[Salida] Con el modelo elegido, Esteban les explica cómo lo integramos en la herramienta.
 
 ---
 
-## Integrante 3 · Arquitectura, tecnologías e integración (diapositivas 8 a 10)
+## Integrante 3 · Esteban Muñoz Serrano · Arquitectura, tecnologías e integración (diapositivas 8 a 10)
 
 **Diapositiva 8 · Arquitectura**
 
@@ -75,11 +75,11 @@ El modelo completo, el codificador de embeddings y el Random Forest, se guarda e
 
 La salida es estructurada: además de la polaridad, entrega la probabilidad de cada clase, la confianza, el margen frente a la segunda clase y una marca que indica si conviene revisión humana. La captura muestra la documentación interactiva de la API, que se genera sola, con sus endpoints para un comentario, para un lote y para un archivo CSV.
 
-[Salida] [Integrante 4] les muestra cómo instalarla y ponerla a funcionar.
+[Salida] José les muestra cómo instalarla y ponerla a funcionar.
 
 ---
 
-## Integrante 4 · Instalación, ejecución y elementos destacados (diapositivas 11 a 13)
+## Integrante 4 · José Harvey Barrera Ramos · Instalación, ejecución y elementos destacados (diapositivas 11 a 13)
 
 **Diapositiva 11 · Instalación**
 
@@ -93,11 +93,11 @@ Para usarla se ejecuta un comando por componente. La interfaz se abre con stream
 
 Queremos destacar seis decisiones. Primero, la revisión humana: si la confianza es menor que 50 % o si las dos clases más probables están muy cerca, el sistema lo advierte en lugar de dar una respuesta falsa de seguridad. Segundo, el versionado: se puede volver a una versión anterior del modelo sin tocar el código. Tercero, la validación de entradas: textos vacíos, demasiado cortos o demasiado largos se señalan. Cuarto, la privacidad: todo se procesa localmente y los registros no guardan comentarios. Quinto, la calidad: 28 pruebas automáticas, cuatro de ellas con el modelo real. Y sexto, la interfaz admite tema claro y oscuro.
 
-[Salida] Para terminar, [integrante 5] les muestra la herramienta en funcionamiento.
+[Salida] Para terminar, Jhon les muestra la herramienta en funcionamiento.
 
 ---
 
-## Integrante 5 · Funcionamiento y conclusiones (diapositivas 14 a 16)
+## Integrante 5 · Jhon David Rios Aguirre · Funcionamiento y conclusiones (diapositivas 14 a 16)
 
 **Diapositiva 14 · Clasificar un comentario**
 
@@ -119,7 +119,7 @@ Muchas gracias. Quedamos atentos a sus preguntas.
 
 ---
 
-## Guía para la demo en vivo (integrante 5)
+## Guía para la demo en vivo (Jhon)
 
 Preparación, antes de la exposición:
 1. Abrir una terminal en la raíz del repositorio y ejecutar `venv\Scripts\python -m streamlit run proyecto/app/streamlit_app.py`.

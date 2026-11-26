@@ -117,8 +117,8 @@ Ojo: en figuras, el archivo `fig5_terminos.png` es la Figura 4 del paper y `fig4
 ## Presentación final (2026-11-25)
 - Pide el profesor: desarrollo/arquitectura/tecnologías, modelo/métricas/integración, instalar/ejecutar/usar, funcionamiento (comentario y CSV).
 - Canva: diseño «Clasificación de polaridad» (id `DAHb-RVVD5o`, https://www.canva.com/d/SUXh4LfVafjm6VX), 16 diapositivas, 15 min, paleta del paper. Guion de cada integrante en las notas del orador.
-- Guion completo: `presentacion/guion.md` (5 bloques de ~320 palabras, sin nombres: «Integrante 1…5»; incluye guía de demo en vivo y preguntas probables).
-- Reparto: 1 problema/datos/desarrollo (diap. 1-4) · 2 modelo y métricas (5-7) · 3 arquitectura/tecnologías/integración (8-10) · 4 instalación/ejecución/destacados (11-13) · 5 demo y conclusiones (14-16).
+- Guion completo: `presentacion/guion.md` y `presentacion/guion.pdf` (5 bloques de ~320 palabras; incluye guía de demo en vivo y preguntas probables). El PDF se genera desde el .md con un script HTML + Edge headless (`--print-to-pdf`).
+- Reparto (2026-11-25): 1 Nicolás — problema/datos/desarrollo (diap. 1-4) · 2 Samuel — modelo y métricas (5-7) · 3 Esteban — arquitectura/tecnologías/integración (8-10) · 4 José — instalación/ejecución/destacados (11-13) · 5 Jhon (el usuario) — demo y conclusiones (14-16). Los nombres están también en las notas del orador de Canva.
 - La generación automática de Canva ignoró las imágenes y puso textos de relleno; se corrigió a mano con capturas reales (Edge headless vía CDP) y figuras del paper. Para subir a Canva usar `curl` (Python urllib recibe 403).
 
 ## Estado (2026-11-05)
