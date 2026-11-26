@@ -81,6 +81,16 @@ def cargar_predictor() -> Predictor:
     return predictor
 
 
+def _num(valor: float, decimales: int = 3) -> str:
+    """Número con coma decimal, como en el paper (0,681)."""
+    return f"{valor:.{decimales}f}".replace(".", ",")
+
+
+def _pct(valor: float, decimales: int = 1) -> str:
+    """Porcentaje con coma decimal y espacio antes de % (66,0 %)."""
+    return f"{_num(valor * 100, decimales)} %"
+
+
 def _badge(clase: str) -> str:
     return (
         f'<span class="badge" style="background:{COLORES.get(clase, AZUL)}">'
@@ -92,8 +102,8 @@ def _mostrar_prediccion(r: dict, clave: str = "") -> None:
     clase = r["polaridad"]
     st.markdown(_badge(clase), unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3)
-    c1.metric("Confianza", f"{r['confianza']:.1%}")
-    c2.metric("Margen sobre la 2.ª clase", f"{r['margen']:.1%}")
+    c1.metric("Confianza", _pct(r["confianza"]))
+    c2.metric("Margen sobre la 2.ª clase", _pct(r["margen"]))
     c3.metric("Revisión humana", "Sí" if r["requiere_revision"] else "No")
 
     if r.get("advertencia") == "texto_vacio":
@@ -173,7 +183,7 @@ st.markdown(
     <div class="hero">
         <h1>Evaluación docente · clasificador de comentarios</h1>
         <p>MVP que convierte comentarios abiertos en polaridad accionable, con confianza y alertas
-        para revisión humana. Modelo {info['version']} · macro-F1 en test {f1_test:.3f}.</p>
+        para revisión humana. Modelo {info['version']} · macro-F1 en test {_num(f1_test)}.</p>
     </div>
     """,
     unsafe_allow_html=True,
@@ -181,13 +191,12 @@ st.markdown(
 
 with st.sidebar:
     st.markdown("### Modelo en uso")
-    st.markdown(f"**Versión** `{info['version']}`")
-    st.caption(f"Archivo: `{info['archivo']}`")
-    st.caption(f"SHA-256: `{(info['sha256'] or '')[:12]}…` · verificado: {'sí' if info['hash_verificado'] else 'no'}")
-    st.metric("macro-F1 (test)", f"{f1_test:.3f}")
-    st.metric("Exactitud (test)", f"{acc_test:.3f}")
-    if len(ic_test) == 2:
-        st.caption(f"IC 95 % macro-F1: [{ic_test[0]:.3f}; {ic_test[1]:.3f}]")
+    st.markdown(
+        f"**Versión** `{info['version']}` · "
+        + ("verificado: sí" if info["hash_verificado"] else ":red[verificado: no]")
+    )
+    st.metric("macro-F1 (test)", _num(f1_test))
+    st.metric("Exactitud (test)", _num(acc_test))
     if not info["entorno"]["compatible"]:
         st.warning(
             "La versión de scikit-learn actual no coincide con la del entrenamiento "
@@ -196,8 +205,8 @@ with st.sidebar:
     st.divider()
     st.markdown("### Criterio de revisión")
     st.caption(
-        f"Se marca para revisión si la confianza es menor que {info['umbrales']['confianza']:.0%} "
-        f"o si la diferencia con la segunda clase es menor que {info['umbrales']['margen']:.0%}."
+        f"Se marca para revisión si la confianza es menor que {_pct(info['umbrales']['confianza'], 0)} "
+        f"o si la diferencia con la segunda clase es menor que {_pct(info['umbrales']['margen'], 0)}."
     )
     st.divider()
     st.caption("Los comentarios se procesan localmente y no se guardan en disco ni se envían a servicios externos.")
@@ -370,7 +379,7 @@ with tab_acerca:
         st.markdown(
             """
             **Límites conocidos**
-            - El modelo predice **polaridad global**, no nueve aspectos.
+            - El modelo predice **polaridad global**, no polaridad por aspecto.
               El campo `aspecto` queda preparado para una extensión futura.
             - Los comentarios mixtos y los neutrales son los más difíciles:
               el neutral concentra la mayor parte de los errores.
@@ -387,6 +396,8 @@ with tab_acerca:
         st.markdown(
             f"""
             - Versión del modelo: `{info['version']}`
+            - Archivo: `{info['archivo']}`
+            - SHA-256: `{(info['sha256'] or '')[:16]}…` · verificado: {'sí' if info['hash_verificado'] else 'no'}
             - Representación: `{info['representacion']}`
             - Clasificador: `{info['clasificador']}`
             - Fecha de entrenamiento: `{info['fecha_entrenamiento']}`
@@ -395,16 +406,11 @@ with tab_acerca:
             """
         )
         st.caption("Métricas en test (124 comentarios, 20 %):")
-        st.dataframe(
-            pd.DataFrame(
-                {
-                    "Métrica": ["Exactitud", "macro-F1"],
-                    "Valor": [acc_test, f1_test],
-                }
-            ),
-            hide_index=True,
-            width="stretch",
-        )
+        metricas_tabla = {"Métrica": ["Exactitud", "macro-F1"], "Valor": [_num(acc_test), _num(f1_test)]}
+        if len(ic_test) == 2:
+            metricas_tabla["Métrica"].append("IC 95 % macro-F1")
+            metricas_tabla["Valor"].append(f"[{_num(ic_test[0])}; {_num(ic_test[1])}]")
+        st.dataframe(pd.DataFrame(metricas_tabla), hide_index=True, width="stretch")
     with der:
         st.markdown("**Matriz de confusión (test)**")
         matriz = pd.DataFrame(
